@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,16 +22,46 @@ namespace TopDownStealth
         [SerializeField]
         private LayerMask _obstacleMask = default;
 
+        [SerializeField]
+        private MeshFilter _viewMeshFilter = null;
+
+        [SerializeField]
+        private float _meshResolution = 0f;
+
+        [SerializeField]
+        private int _edgeResolveIterations = 0;
+
+        [SerializeField]
+        [LabelText("Edge Distance Threshold")]
+        private float _edgeDistThreshold = 0f;
+
         public List<Transform> VisibleTargets { get; private set; } = null;
+
+        private RaycastHit[] _raycastHit = null;
+
+        private List<Vector3> _viewPoints = null;
+
+        private Mesh _viewMesh = null;
 
         private void Awake()
         {
             VisibleTargets = new List<Transform>();
+            _viewPoints = new List<Vector3>();
+            _raycastHit = new RaycastHit[1];
+
+            _viewMesh = new Mesh();
+            _viewMesh.name = "View Mesh";
+            _viewMeshFilter.mesh = _viewMesh;
         }
 
         private void Start()
         {
             StartCoroutine(FindTargetsWithDelay(0.2f));
+        }
+
+        private void LateUpdate()
+        {
+            DrawFieldOfView();
         }
 
         private IEnumerator FindTargetsWithDelay(float delay)
@@ -65,7 +96,98 @@ namespace TopDownStealth
             }
         }
 
-        public Vector3 DirectionFromAngle(float angleInDegrees, bool angleIsGlobal)
+        private void DrawFieldOfView()
+        {
+            int stepCount = Mathf.RoundToInt(_angle * _meshResolution);
+            float stepAngleSize = _angle / stepCount;
+
+            _viewPoints.Clear();
+
+            ViewCastInfo oldViewCast = new ViewCastInfo();
+
+            for (int i = 0; i <= stepCount; i++)
+            {
+                float angle = transform.eulerAngles.y - _angle / 2 + stepAngleSize * i;
+                ViewCastInfo newViewCast = ViewCast(angle);
+
+                if (i > 0)
+                {
+                    bool edgeDistThresholdExceeded = Mathf.Abs(oldViewCast.dist - newViewCast.dist) > _edgeDistThreshold;
+
+                    if (oldViewCast.hit != newViewCast.hit || (oldViewCast.hit && newViewCast.hit && edgeDistThresholdExceeded))
+                    {
+                        EdgeInfo edge = FindEdge(oldViewCast, newViewCast);
+
+                        if (edge.pointA != Vector3.zero)
+                        {
+                            _viewPoints.Add(edge.pointA);
+                        }
+
+                        if (edge.pointB != Vector3.zero)
+                        {
+                            _viewPoints.Add(edge.pointB);
+                        }
+                    }
+                }
+
+                _viewPoints.Add(newViewCast.point);
+                oldViewCast = newViewCast;
+            }
+
+            /// Construct mesh triangles
+            int vertexCount = _viewPoints.Count + 1;
+            Vector3[] vertices = new Vector3[vertexCount];
+            int[] triangles = new int[(vertexCount - 2) * 3];
+
+            vertices[0] = Vector3.zero;
+            for (int i = 0; i < vertexCount - 1; i++)
+            {
+                vertices[i + 1] = transform.InverseTransformPoint(_viewPoints[i]);
+
+                if (i < vertexCount - 2)
+                {
+                    triangles[i * 3] = 0;
+                    triangles[i * 3 + 1] = i + 1;
+                    triangles[i * 3 + 2] = i + 2;
+                }
+            }
+
+            _viewMesh.Clear();
+            _viewMesh.vertices = vertices;
+            _viewMesh.triangles = triangles;
+            _viewMesh.RecalculateNormals();
+        }
+
+        private EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast)
+        {
+            float minAngle = minViewCast.angle;
+            float maxAngle = maxViewCast.angle;
+            Vector3 minPoint = minViewCast.point;
+            Vector3 maxPoint = maxViewCast.point;
+
+            for (int i = 0; i < _edgeResolveIterations; i++)
+            {
+                float angle = (minAngle + maxAngle) / 2;
+                ViewCastInfo newViewCast = ViewCast(angle);
+
+                bool edgeDistThresholdExceeded = Mathf.Abs(minViewCast.dist - newViewCast.dist) > _edgeDistThreshold;
+
+                if (newViewCast.hit == minViewCast.hit && !edgeDistThresholdExceeded)
+                {
+                    minAngle = angle;
+                    minPoint = newViewCast.point;
+                }
+                else
+                {
+                    maxAngle = angle;
+                    maxPoint = newViewCast.point;
+                }
+            }
+
+            return new EdgeInfo(minPoint, maxPoint);
+        }
+
+        public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
         {
             if (!angleIsGlobal)
             {
@@ -73,6 +195,48 @@ namespace TopDownStealth
             }
 
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        }
+
+        private ViewCastInfo ViewCast(float globalAngle)
+        {
+            Vector3 dir = DirFromAngle(globalAngle, true);
+
+            if (Physics.RaycastNonAlloc(transform.position, dir, _raycastHit, _radius, _obstacleMask) > 0)
+            {
+                return new ViewCastInfo(true, _raycastHit[0].point, _raycastHit[0].distance, globalAngle);
+            }
+            else
+            {
+                return new ViewCastInfo(false, transform.position + dir * _radius, _radius, globalAngle);
+            }
+        }
+    }
+
+    public struct ViewCastInfo
+    {
+        public bool hit;
+        public Vector3 point;
+        public float dist;
+        public float angle;
+
+        public ViewCastInfo(bool hit, Vector3 point, float distance, float angle)
+        {
+            this.hit = hit;
+            this.point = point;
+            this.dist = distance;
+            this.angle = angle;
+        }
+    }
+
+    public struct EdgeInfo
+    {
+        public Vector3 pointA;
+        public Vector3 pointB;
+
+        public EdgeInfo(Vector3 pointA, Vector3 pointB)
+        {
+            this.pointA = pointA;
+            this.pointB = pointB;
         }
     }
 }

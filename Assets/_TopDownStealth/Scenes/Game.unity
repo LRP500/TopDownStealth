@@ -262,26 +262,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8910922141341369166, guid: 2e85d4d421382b442b1ec5bec6034278,
-        type: 3}
-      propertyPath: _radius
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8910922141341369166, guid: 2e85d4d421382b442b1ec5bec6034278,
-        type: 3}
-      propertyPath: _angle
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8910922141341369166, guid: 2e85d4d421382b442b1ec5bec6034278,
-        type: 3}
-      propertyPath: _targetMask.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 8910922141341369166, guid: 2e85d4d421382b442b1ec5bec6034278,
-        type: 3}
-      propertyPath: _obstacleMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e85d4d421382b442b1ec5bec6034278, type: 3}
 --- !u!1001 &181624793
