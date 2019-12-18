@@ -17,10 +17,10 @@ namespace TopDownStealth
             Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleA * fov.Radius);
             Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleB * fov.Radius);
 
+            Handles.color = Color.red;
+
             if (fov.VisibleTargets != null)
             {
-                Handles.color = Color.red;
-
                 foreach (Transform visibleTarget in fov.VisibleTargets)
                 {
                     Handles.DrawLine(fov.transform.position, visibleTarget.position);

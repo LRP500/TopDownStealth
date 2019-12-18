@@ -35,9 +35,10 @@ namespace TopDownStealth
         [LabelText("Edge Distance Threshold")]
         private float _edgeDistThreshold = 0f;
 
-        public List<Transform> VisibleTargets { get; private set; } = null;
+        [SerializeField]
+        private float _maskCutawayDistance = 0.1f;
 
-        private RaycastHit[] _raycastHit = null;
+        public List<Transform> VisibleTargets { get; private set; } = null;
 
         private List<Vector3> _viewPoints = null;
 
@@ -47,8 +48,6 @@ namespace TopDownStealth
         {
             VisibleTargets = new List<Transform>();
             _viewPoints = new List<Vector3>();
-            _raycastHit = new RaycastHit[1];
-
             _viewMesh = new Mesh();
             _viewMesh.name = "View Mesh";
             _viewMeshFilter.mesh = _viewMesh;
@@ -142,7 +141,7 @@ namespace TopDownStealth
             vertices[0] = Vector3.zero;
             for (int i = 0; i < vertexCount - 1; i++)
             {
-                vertices[i + 1] = transform.InverseTransformPoint(_viewPoints[i]);
+                vertices[i + 1] = transform.InverseTransformPoint(_viewPoints[i]) + Vector3.forward * _maskCutawayDistance;
 
                 if (i < vertexCount - 2)
                 {
@@ -162,8 +161,8 @@ namespace TopDownStealth
         {
             float minAngle = minViewCast.angle;
             float maxAngle = maxViewCast.angle;
-            Vector3 minPoint = minViewCast.point;
-            Vector3 maxPoint = maxViewCast.point;
+            Vector3 minPoint = Vector3.zero;
+            Vector3 maxPoint = Vector3.zero;
 
             for (int i = 0; i < _edgeResolveIterations; i++)
             {
@@ -201,9 +200,9 @@ namespace TopDownStealth
         {
             Vector3 dir = DirFromAngle(globalAngle, true);
 
-            if (Physics.RaycastNonAlloc(transform.position, dir, _raycastHit, _radius, _obstacleMask) > 0)
+            if (Physics.Raycast(transform.position, dir, out RaycastHit hit, _radius, _obstacleMask))
             {
-                return new ViewCastInfo(true, _raycastHit[0].point, _raycastHit[0].distance, globalAngle);
+                return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
             }
             else
             {
