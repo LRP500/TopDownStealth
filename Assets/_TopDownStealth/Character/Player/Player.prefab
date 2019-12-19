@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2123266120393546016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566108893174304725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 50
+  _angle: 360
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _viewMeshFilter: {fileID: 4578808939425142671}
+  _meshResolution: 5
+  _edgeResolveIterations: 10
+  _edgeDistThreshold: 0.5
+  _maskCutawayDistance: 0.2
 --- !u!114 &2584414111483323496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,31 +39,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _behaviour: {fileID: 11400000, guid: 5faca3ea37e9b844ebf42a410e8dec91, type: 2}
   _runtimeReference: {fileID: 11400000, guid: 4fffd20963f498147ae3f755585680ed, type: 2}
---- !u!114 &2123266120393546016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2566108893174304725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _radius: 15.15
-  _angle: 90
-  _targetMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _viewMeshFilter: {fileID: 4578808939425142671}
-  _meshResolution: 5
-  _edgeResolveIterations: 10
-  _edgeDistThreshold: 0.5
-  _maskCutawayDistance: 0
 --- !u!1 &7668510934244202457
 GameObject:
   m_ObjectHideFlags: 0
