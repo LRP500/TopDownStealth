@@ -21,10 +21,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _viewMeshFilter: {fileID: 4578808939425142671}
-  _meshResolution: 5
-  _edgeResolveIterations: 10
+  _meshResolution: 4
+  _edgeResolveIterations: 20
   _edgeDistThreshold: 0.5
-  _maskCutawayDistance: 0.2
+  _maskCutawayDistance: 0
 --- !u!114 &2584414111483323496
 MonoBehaviour:
   m_ObjectHideFlags: 0
