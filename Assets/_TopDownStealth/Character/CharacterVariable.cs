@@ -1,4 +1,5 @@
 ﻿using Tools.Variables;
+using TopDownStealth.Characters;
 using UnityEngine;
 
 namespace TopDownStealth

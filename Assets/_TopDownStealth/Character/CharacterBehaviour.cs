@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TopDownStealth
+namespace TopDownStealth.Characters
 {
     public abstract class CharacterBehaviour : ScriptableObject
     {

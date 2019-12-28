@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TopDownStealth
+namespace TopDownStealth.Characters
 {
     [RequireComponent(typeof(CharacterController))]
     public class CharacterMovement : MonoBehaviour

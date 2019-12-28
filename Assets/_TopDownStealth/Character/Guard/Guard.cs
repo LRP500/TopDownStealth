@@ -1,6 +1,6 @@
-﻿namespace TopDownStealth
+﻿namespace TopDownStealth.Characters
 {
-    public class Enemy : Character
+    public class Guard : Character
     {
         protected override void Awake()
         {

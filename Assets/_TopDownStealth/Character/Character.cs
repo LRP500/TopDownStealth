@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TopDownStealth
+namespace TopDownStealth.Characters
 {
     /// <summary>
     /// Highest-level API for all gameplay related character actions.
@@ -11,7 +11,13 @@ namespace TopDownStealth
         [SerializeField]
         private CharacterBehaviour _behaviour = null;
 
+        [SerializeField]
+        private Path _path = null;
+        public Path Path => _path;
+
         private CharacterMovement _mover = null;
+
+        public CharacterBrain Brain { get; private set; } = null;
 
         public CharacterSide Side { get; protected set; } = CharacterSide.Neutral;
 
@@ -32,6 +38,7 @@ namespace TopDownStealth
 
         private void Initialize()
         {
+            Brain = new CharacterBrain();
             _behaviour?.Initialize(this);
         }
 

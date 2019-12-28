@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TopDownStealth
+namespace TopDownStealth.Characters.Behaviours
 {
     [CreateAssetMenu(menuName = "Top Down Stealth/Characters/Behaviours/Idle")]
     public class IdleBehaviour : CharacterBehaviour

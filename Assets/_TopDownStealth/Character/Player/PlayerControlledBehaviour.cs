@@ -1,7 +1,7 @@
 ﻿using Tools.Variables;
 using UnityEngine;
 
-namespace TopDownStealth
+namespace TopDownStealth.Characters.Behaviours
 {
     /// <summary>
     /// Handles all player-specific gameplay actions and input.
