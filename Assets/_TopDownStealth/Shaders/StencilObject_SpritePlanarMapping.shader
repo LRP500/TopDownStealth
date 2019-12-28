@@ -38,6 +38,8 @@
             #pragma vertex vert
             #pragma fragment frag
 
+            #pragma shader_feature_local TRANSPARENCY
+
             sampler2D _MainTex;
             fixed4 _MainTex_ST;
             fixed4 _Color;
@@ -72,9 +74,12 @@
 
             fixed4 frag(v2f i) : SV_TARGET
             {
+#ifdef TRANSPARENCY
                 float2 uv_top = TRANSFORM_TEX(i.worldPos.xz, _MainTex);
                 fixed4 col_top = tex2D(_MainTex, uv_top);
                 return col_top * _Color * i.color;
+#endif
+                return fixed4(0, 0, 0, 1);
             }
 
             ENDCG

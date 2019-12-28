@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 420781694}
   - component: {fileID: 420781693}
   - component: {fileID: 420781697}
+  - component: {fileID: 420781698}
   m_Layer: 27
   m_Name: EditorViewMask
   m_TagString: Untagged
@@ -490,6 +491,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableOnPlay: 1
+--- !u!114 &420781698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420781692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f8f588f7bfb1d946924e06e5e338d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 2556a3fb0e92e574fb71b055fd2c50b8, type: 2}
+  _variantName: TRANSPARENCY
+  _enableOnAwake: 1
 --- !u!1 &483745793
 GameObject:
   m_ObjectHideFlags: 0
