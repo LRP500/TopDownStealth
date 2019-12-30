@@ -73,7 +73,7 @@ Material:
     - _SrcBlend: 1
     - _StencilComp: 3
     - _StencilOp: 0
-    - _StencilRef: 1
+    - _StencilRef: 2
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
