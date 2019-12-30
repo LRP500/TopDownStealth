@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using Sirenix.OdinInspector.Editor;
+using UnityEditor;
 using UnityEngine;
 
 namespace TopDownStealth
 {
     [CustomEditor(typeof(FieldOfView))]
-    public class FieldOfViewEditor : Editor
+    public class FieldOfViewEditor : OdinEditor
     {
         private void OnSceneGUI()
         {

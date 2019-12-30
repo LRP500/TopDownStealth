@@ -86,9 +86,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behaviour: {fileID: 11400000, guid: d68b20ffd8f6d5c4c91ab896341c0d7a, type: 2}
+  _fov: {fileID: 2434338769585072320}
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
+  _detectionTime: 2
+--- !u!114 &2434338769585072320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442851578497125640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 20
+  _angle: 90
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _detectionInterval: 0.2
+  _generateMesh: 0
+  _viewMeshFilter: {fileID: 0}
+  _meshResolution: 0
+  _edgeResolveIterations: 0
+  _edgeDistThreshold: 0
+  _maskCutawayDistance: 0.1
 --- !u!1 &6451206313311266841
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2839962609350702223}
   - component: {fileID: 3032695748091741644}
-  - component: {fileID: 7561315275899248799}
+  - component: {fileID: 7536603744671181763}
   m_Layer: 0
   m_Name: DetectionSlider
   m_TagString: Untagged
@@ -177,19 +206,33 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7561315275899248799
+--- !u!114 &7536603744671181763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6451206313311266841}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c82473db9dc136c40867b9f5a4f659d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 91a0d6ee906464f4a809dd8d141ccd14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 11400000, guid: acfd31cb33271ad4383b7367647bce7f, type: 2}
+  _min:
+    useConstant: 1
+    constant: 0
+    variable: {fileID: 0}
+  _max:
+    useConstant: 1
+    constant: 0
+    variable: {fileID: 0}
+  _value:
+    useConstant: 1
+    constant: 0
+    variable: {fileID: 0}
+  _updateMode: 1
+  _slider: {fileID: 3032695748091741644}
+  _guard: {fileID: 361016628823294318}
 --- !u!1 &7191536289977889245
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +445,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 488572831933396051, guid: e03f0ee9947473e44a8874bd8aefffdc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1790792581975914024, guid: e03f0ee9947473e44a8874bd8aefffdc,
         type: 3}
       propertyPath: m_Name

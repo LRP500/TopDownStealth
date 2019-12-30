@@ -23,19 +23,31 @@ namespace TopDownStealth
         private LayerMask _obstacleMask = default;
 
         [SerializeField]
+        private float _detectionInterval = 0.2f;
+
+        [SerializeField]
+        private bool _generateMesh = false;
+
+        [SerializeField]
+        [ShowIfGroup(nameof(_generateMesh))]
+        [BoxGroup(nameof(_generateMesh) + "/Mesh")]
         private MeshFilter _viewMeshFilter = null;
 
         [SerializeField]
+        [BoxGroup(nameof(_generateMesh) + "/Mesh")]
         private float _meshResolution = 0f;
 
         [SerializeField]
+        [BoxGroup(nameof(_generateMesh) + "/Mesh")]
         private int _edgeResolveIterations = 0;
 
         [SerializeField]
+        [BoxGroup(nameof(_generateMesh) + "/Mesh")]
         [LabelText("Edge Distance Threshold")]
         private float _edgeDistThreshold = 0f;
 
         [SerializeField]
+        [BoxGroup(nameof(_generateMesh) + "/Mesh")]
         private float _maskCutawayDistance = 0.1f;
 
         public List<Transform> VisibleTargets { get; private set; } = null;
@@ -48,19 +60,26 @@ namespace TopDownStealth
         {
             VisibleTargets = new List<Transform>();
             _viewPoints = new List<Vector3>();
-            _viewMesh = new Mesh();
-            _viewMesh.name = "View Mesh";
-            _viewMeshFilter.mesh = _viewMesh;
+
+            if (_generateMesh)
+            {
+                _viewMesh = new Mesh();
+                _viewMesh.name = "View Mesh";
+                _viewMeshFilter.mesh = _viewMesh;
+            }
         }
 
         private void Start()
         {
-            StartCoroutine(FindTargetsWithDelay(0.2f));
+            StartCoroutine(FindTargetsWithDelay(_detectionInterval));
         }
 
         private void LateUpdate()
         {
-            DrawFieldOfView();
+            if (_generateMesh)
+            {
+                DrawFieldOfView();
+            }
         }
 
         private IEnumerator FindTargetsWithDelay(float delay)

@@ -14,6 +14,10 @@ namespace TopDownStealth.Characters
         private CharacterBehaviour _behaviour = null;
 
         [SerializeField]
+        private FieldOfView _fov = null;
+        public FieldOfView FOV => _fov;
+
+        [SerializeField]
         private bool _hasPath = false;
 
         [SerializeField]
