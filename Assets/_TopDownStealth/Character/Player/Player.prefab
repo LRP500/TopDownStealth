@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behaviour: {fileID: 11400000, guid: 5faca3ea37e9b844ebf42a410e8dec91, type: 2}
+  _fov: {fileID: 4902817067643525488}
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 50
+  _radius: 20
   _angle: 360
   _targetMask:
     serializedVersion: 2
@@ -41,7 +42,7 @@ MonoBehaviour:
   _generateMesh: 1
   _viewMeshFilter: {fileID: 9118932430503511024}
   _meshResolution: 4
-  _edgeResolveIterations: 20
+  _edgeResolveIterations: 10
   _edgeDistThreshold: 0.5
   _maskCutawayDistance: 0
 --- !u!1 &4325433655067681470
@@ -92,9 +93,9 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4325433655067681470}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

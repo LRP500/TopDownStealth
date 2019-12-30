@@ -1,4 +1,4 @@
-﻿using Extensions;
+﻿using Sirenix.OdinInspector;
 using Tools.Extensions;
 using UnityEngine;
 
@@ -7,11 +7,22 @@ namespace TopDownStealth.Characters
     public class Guard : Character
     {
         [SerializeField]
+        [BoxGroup("Detection")]
         private float _detectionTime = 2;
         public float DetectionTime => _detectionTime;
 
         [SerializeField]
-        private float _detectionAngleMultiplier = 2;
+        [BoxGroup("Detection")]
+        private float _dampeningSpeed = 2;
+        public float DampeningSpeed => _dampeningSpeed;
+
+        [SerializeField]
+        [BoxGroup("Detection")]
+        private float _angleMultiplier = 2;
+
+        [SerializeField]
+        [BoxGroup("Detection")]
+        private float _distanceMultiplier = 2;
 
         public float DetectionLevel { get; private set; } = 0;
 
@@ -40,14 +51,17 @@ namespace TopDownStealth.Characters
             {
                 DetectionLevel += GetDetectionIncrement() * Time.deltaTime;
 
-                if (DetectionLevel > _detectionTime)
+                if (DetectionLevel >= _detectionTime)
                 {
                 }
             }
             else
             {
-                DetectionLevel = 0;
+                DetectionLevel -= _dampeningSpeed * Time.deltaTime;
+                DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionTime);
             }
+
+            DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionTime);
         }
 
         private float GetDetectionIncrement()
@@ -55,16 +69,19 @@ namespace TopDownStealth.Characters
             /// Get player position.
             Vector3 playerPos = FOV.VisibleTargets[0].position;
             playerPos = new Vector3(playerPos.x, 0, playerPos.z);
-            
+
             /// Get direction to player.
             Vector3 dirToPlayer = playerPos - transform.position;
-            Debug.DrawLine(transform.position, transform.position + dirToPlayer, Color.magenta, 0.5f);
-            
-            /// Get angle to player.
+
+            /// Get angle increment.
             float angleToPlayer = Mathf.Abs(Vector3.Angle(transform.forward, dirToPlayer));
-         
-            /// Return value to range from 1 to angle multiplier.
-            return angleToPlayer.Convert(0, (FOV.Angle / 2), _detectionAngleMultiplier, 1);
+            float angleIncrement = angleToPlayer.Convert(0, (FOV.Angle / 2), _angleMultiplier, 1);
+
+            /// Get distance increment.
+            float distToPlayer = Vector3.Distance(transform.position, playerPos);
+            float distIncrement = distToPlayer.Convert(1, FOV.Radius, _distanceMultiplier, 1);
+
+            return angleIncrement * distIncrement;
         }
     }
 }

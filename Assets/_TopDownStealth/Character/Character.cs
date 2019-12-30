@@ -14,19 +14,23 @@ namespace TopDownStealth.Characters
         private CharacterBehaviour _behaviour = null;
 
         [SerializeField]
+        [BoxGroup("Detection")]
         private FieldOfView _fov = null;
         public FieldOfView FOV => _fov;
 
         [SerializeField]
+        [BoxGroup("Navigation")]
         private bool _hasPath = false;
 
         [SerializeField]
+        [BoxGroup("Navigation")]
         [ShowIf(nameof(_hasPath))]
         [OnValueChanged(nameof(ResetPosition))]
         private Path _path = null;
         public Path Path => _path;
 
         [SerializeField]
+        [BoxGroup("Navigation")]
         [ShowIf(nameof(_path))]
         [PropertyRange(0, "@ _path ? _path.GetWaypointCount() - 1 : 0")]
         [OnValueChanged(nameof(ResetPosition))]
