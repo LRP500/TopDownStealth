@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d198024167e224397f5ae27b674742, type: 3}
   m_Name: FollowPath
   m_EditorClassIdentifier: 
-  _reachDistanceTolerance: 0.2
+  _reachDistanceTolerance: 0.05

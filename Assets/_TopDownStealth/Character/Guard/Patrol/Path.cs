@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace TopDownStealth.Characters
 {
@@ -27,15 +28,21 @@ namespace TopDownStealth.Characters
             return waypoints;
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
 
-            foreach (Vector3 waypoint in Waypoints)
-            {
-                Gizmos.DrawWireSphere(waypoint, 0.5f);
+            Vector3[] waypoints = GetWaypoints();
+            Vector3 previousPosition = waypoints[0];
 
+            foreach (Vector3 waypoint in waypoints)
+            {
+                Gizmos.DrawWireCube(waypoint, Vector3.one / 2);
+                Gizmos.DrawLine(previousPosition, waypoint);
+                previousPosition = waypoint;
             }
+
+            Gizmos.DrawLine(previousPosition, waypoints[0]);
         }
     }
 }

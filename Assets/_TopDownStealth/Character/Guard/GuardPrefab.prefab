@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behaviour: {fileID: 11400000, guid: d68b20ffd8f6d5c4c91ab896341c0d7a, type: 2}
+  _path: {fileID: 0}
 --- !u!1001 &176790514938886719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28,7 +29,12 @@ PrefabInstance:
     - target: {fileID: 5000668637061857826, guid: f8525f10cf3aaf24389a8135d32b08c5,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: GuardPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000668637061857837, guid: f8525f10cf3aaf24389a8135d32b08c5,
+        type: 3}
+      propertyPath: _speed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5000668637061857838, guid: f8525f10cf3aaf24389a8135d32b08c5,
         type: 3}
