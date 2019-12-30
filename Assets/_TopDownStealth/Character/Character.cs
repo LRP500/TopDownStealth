@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using Tool.Extensions;
+using UnityEngine;
 
 namespace TopDownStealth.Characters
 {
@@ -12,8 +14,24 @@ namespace TopDownStealth.Characters
         private CharacterBehaviour _behaviour = null;
 
         [SerializeField]
+        private bool _hasPath = false;
+
+        [SerializeField]
+        [ShowIf(nameof(_hasPath))]
+        [OnValueChanged(nameof(ResetPosition))]
         private Path _path = null;
         public Path Path => _path;
+
+        [SerializeField]
+        [ShowIf(nameof(_path))]
+        [PropertyRange(0, "@ _path ? _path.GetWaypointCount() - 1 : 0")]
+        [OnValueChanged(nameof(ResetPosition))]
+        private int _initialPathPosition = 0;
+
+        private int MaxPathIndex()
+        {
+            return _path.GetWaypointCount();
+        }
 
         private CharacterMovement _mover = null;
 
@@ -62,6 +80,26 @@ namespace TopDownStealth.Characters
         }
 
         protected abstract void Die();
+
+        #region Editor
+
+        /// <summary>
+        /// Reset character position on new path set.
+        /// </summary>
+        private void ResetPosition()
+        {
+            if (_hasPath && _path)
+            {
+                if (!_initialPathPosition.InRange(0, _path.GetWaypointCount(), false))
+                {
+                    _initialPathPosition = 0;
+                }
+
+                transform.position = _path.GetWaypointAt(_initialPathPosition);
+            }
+        }
+
+        #endregion Editor
     }
 
     public enum CharacterSide
