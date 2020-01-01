@@ -1,7 +1,6 @@
 ﻿using Tools;
 using Tools.Navigation;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TopDownStealth
 {
@@ -17,7 +16,7 @@ namespace TopDownStealth
 
         private void OnGameOver(object arg)
         {
-            SceneManager.LoadSceneAsync(_gameOverScene.path);
+            StartCoroutine(NavigationManager.Instance.SwitchScenes(_gameOverScene));
         }
     }
 }

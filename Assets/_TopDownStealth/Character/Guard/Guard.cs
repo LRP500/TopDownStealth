@@ -54,7 +54,12 @@ namespace TopDownStealth.Characters
 
                 if (DetectionLevel >= _detectionTime)
                 {
+                    /// "Game over man, game over !"
+                    ///     - Private Hudson
                     EventManager.Instance.Trigger(GameEvent.GameOver);
+                    
+                    /// Disable guard to avoid trigger event mulitple times.
+                    enabled = false;
                 }
             }
             else

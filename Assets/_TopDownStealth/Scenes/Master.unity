@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventManager: {fileID: 11400000, guid: af161ce9509b70f4388ed7f968255a7f, type: 2}
-  _navigationManager: {fileID: 0}
+  _navigationManager: {fileID: 11400000, guid: 2e2fdca126bc8c847b07ece690e0c14b, type: 2}
 --- !u!4 &461820299
 Transform:
   m_ObjectHideFlags: 0

@@ -2422,26 +2422,6 @@ PrefabInstance:
       propertyPath: _detectionSpeed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 361016628823294318, guid: e1f306d7e46fcb8469e79640207a660e,
-        type: 3}
-      propertyPath: _detectionTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 361016628823294318, guid: e1f306d7e46fcb8469e79640207a660e,
-        type: 3}
-      propertyPath: _dampeningSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 361016628823294318, guid: e1f306d7e46fcb8469e79640207a660e,
-        type: 3}
-      propertyPath: _angleMultiplier
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 361016628823294318, guid: e1f306d7e46fcb8469e79640207a660e,
-        type: 3}
-      propertyPath: _distanceMultiplier
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4279383270937321094, guid: e1f306d7e46fcb8469e79640207a660e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2465,7 +2445,7 @@ PrefabInstance:
     - target: {fileID: 5442851578497125643, guid: e1f306d7e46fcb8469e79640207a660e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5
+      value: 8.46
       objectReference: {fileID: 0}
     - target: {fileID: 5442851578497125643, guid: e1f306d7e46fcb8469e79640207a660e,
         type: 3}
@@ -2475,7 +2455,7 @@ PrefabInstance:
     - target: {fileID: 5442851578497125643, guid: e1f306d7e46fcb8469e79640207a660e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.52
+      value: -7.35
       objectReference: {fileID: 0}
     - target: {fileID: 5442851578497125643, guid: e1f306d7e46fcb8469e79640207a660e,
         type: 3}
