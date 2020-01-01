@@ -30,7 +30,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 20
+  _radius: 30
   _angle: 360
   _targetMask:
     serializedVersion: 2

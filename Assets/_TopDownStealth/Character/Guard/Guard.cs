@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using Tools;
 using Tools.Extensions;
 using UnityEngine;
 
@@ -53,6 +54,7 @@ namespace TopDownStealth.Characters
 
                 if (DetectionLevel >= _detectionTime)
                 {
+                    EventManager.Instance.Trigger(GameEvent.GameOver);
                 }
             }
             else
