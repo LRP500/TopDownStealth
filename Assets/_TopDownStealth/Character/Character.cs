@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System.Collections;
 using Tool.Extensions;
 using UnityEngine;
 
@@ -36,11 +37,6 @@ namespace TopDownStealth.Characters
         [OnValueChanged(nameof(ResetPosition))]
         private int _initialPathPosition = 0;
 
-        private int MaxPathIndex()
-        {
-            return _path.GetWaypointCount();
-        }
-
         private CharacterMovement _mover = null;
 
         public CharacterBrain Brain { get; private set; } = null;
@@ -55,11 +51,12 @@ namespace TopDownStealth.Characters
         private void Start()
         {
             Initialize();
+
+            StartCoroutine(_behaviour.Run(this));
         }
 
         protected virtual void Update()
         {
-            _behaviour?.Run(this);
         }
 
         private void Initialize()
@@ -67,6 +64,8 @@ namespace TopDownStealth.Characters
             Brain = new CharacterBrain();
             _behaviour?.Initialize(this);
         }
+
+        #region Movement
 
         public void LookAt(Vector3 target)
         {
@@ -82,10 +81,28 @@ namespace TopDownStealth.Characters
             }
         }
 
+        public IEnumerator LookAt(Vector3 target, float duration)
+        {
+            float elapsed = 0;
+
+            Vector3 direction = (target - transform.position).normalized;
+            Quaternion initialRot = transform.rotation;
+            Quaternion targetRot = Quaternion.LookRotation(direction);
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                transform.rotation = Quaternion.Lerp(initialRot, targetRot, elapsed / duration);
+                yield return null;
+            }
+        }
+
         public void Move(Vector3 direction)
         {
             _mover.SetDirection(direction);
         }
+    
+        #endregion Movement
 
         protected abstract void Die();
 

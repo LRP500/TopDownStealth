@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_TopDownStealth/Scenes/Master.unity
+    guid: 1766acf06216e4a49b6c6b49713f0b99
+  - enabled: 1
+    path: Assets/_TopDownStealth/Scenes/Gameplay.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/_TopDownStealth/Scenes/GameOver.unity
+    guid: e7d973bb6edd9424793207e2637fd59a
   m_configObjects: {}

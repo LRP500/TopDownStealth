@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using System.Collections;
 using UnityEngine;
 
 namespace TopDownStealth.Characters.Behaviours
@@ -9,6 +10,12 @@ namespace TopDownStealth.Characters.Behaviours
         [SerializeField]
         private float _reachDistanceTolerance = 0.05f;
 
+        [SerializeField]
+        private float _idleTimeOnReachWaypoint = 1f;
+
+        [SerializeField]
+        private float _rotationTime = 1f;
+
         public override void Initialize(Character character)
         {
             Vector3[] waypoints = character.Path?.Waypoints;
@@ -17,22 +24,34 @@ namespace TopDownStealth.Characters.Behaviours
             character.Brain.Remember("current_waypoint_index", initialWaypoint);
         }
 
-        public override void Run(Character character)
+        public override IEnumerator Run(Character character)
         {
-            Vector3[] waypoints = character.Brain.Remember<Vector3[]>("path_waypoints");
-            int current = character.Brain.Remember<int>("current_waypoint_index");
-
-            if (waypoints != null && waypoints.Length > 2)
+            while (character.enabled)
             {
-                if (HasReachedWaypoint(character, waypoints[current]))
-                {
-                    GetNextWaypoint(ref current, waypoints);
-                    character.Brain.Remember("current_waypoint_index", current);
-                }
+                Vector3[] waypoints = character.Brain.Remember<Vector3[]>("path_waypoints");
+                int current = character.Brain.Remember<int>("current_waypoint_index");
 
-                Vector3 direction = waypoints[current] - character.transform.position;
-                direction.SetY(0);
-                character.Move(direction.normalized);
+                if (waypoints != null && waypoints.Length > 2)
+                {
+                    Vector3 destination = waypoints[current];
+
+                    if (HasReachedWaypoint(character, destination))
+                    {
+                        yield return new WaitForSeconds(_idleTimeOnReachWaypoint);
+                        
+                        GetNextWaypoint(ref current, waypoints);
+                        character.Brain.Remember("current_waypoint_index", current);
+                        destination = waypoints[current];
+
+                        yield return character.StartCoroutine(character.LookAt(destination, _rotationTime));
+                    }
+
+                    destination.SetY(0);
+                    Vector3 direction = destination - character.transform.position;
+                    character.Move(direction.normalized);
+
+                    yield return null;
+                }
             }
         }
 

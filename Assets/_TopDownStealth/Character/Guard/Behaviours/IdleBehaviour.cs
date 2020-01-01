@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace TopDownStealth.Characters.Behaviours
 {
@@ -9,8 +10,9 @@ namespace TopDownStealth.Characters.Behaviours
         {
         }
 
-        public override void Run(Character character)
+        public override IEnumerator Run(Character character)
         {
+            yield return null;
         }
     }
 }

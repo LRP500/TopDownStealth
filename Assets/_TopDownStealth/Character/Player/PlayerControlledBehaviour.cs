@@ -1,4 +1,5 @@
-﻿using Tools.Variables;
+﻿using System.Collections;
+using Tools.Variables;
 using UnityEngine;
 
 namespace TopDownStealth.Characters.Behaviours
@@ -18,13 +19,16 @@ namespace TopDownStealth.Characters.Behaviours
         {
         }
 
-        public override void Run(Character character)
+        public override IEnumerator Run(Character character)
         {
             _character = character;
 
-            _character.LookAt(GetMousePosition());
-
-            HandleMovement();
+            while (character.enabled)
+            {
+                _character.LookAt(GetMousePosition());
+                HandleMovement();
+                yield return null;
+            }
         }
 
         private Vector3 GetMousePosition()
