@@ -27,7 +27,7 @@ namespace TopDownStealth
 
         private void OnRestartButtonClick()
         {
-            StartCoroutine(NavigationManager.Instance.SwitchScenes(_gameplayScene));
+            StartCoroutine(NavigationManager.Instance.FastLoad(_gameplayScene));
         }
     }
 }

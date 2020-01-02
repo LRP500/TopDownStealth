@@ -1,0 +1,17 @@
+{
+    "name": "TopDownStealth.Editor",
+    "references": [
+        "GUID:8e88032a682cd8c4ebd0f43b668e614b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

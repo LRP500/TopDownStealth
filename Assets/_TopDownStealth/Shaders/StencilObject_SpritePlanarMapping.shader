@@ -38,7 +38,7 @@
             #pragma vertex vert
             #pragma fragment frag
 
-            #pragma shader_feature_local TRANSPARENCY
+            #pragma multi_compile _ TRANSPARENCY
 
             sampler2D _MainTex;
             fixed4 _MainTex_ST;

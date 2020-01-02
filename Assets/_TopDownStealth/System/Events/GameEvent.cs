@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-
-namespace TopDownStealth
+﻿namespace TopDownStealth
 {
     public static class GameEvent
     {
         public static readonly string GameOver = "GameOver";
+        public static readonly string LevelExit = "LevelEnd";
     }
 }
