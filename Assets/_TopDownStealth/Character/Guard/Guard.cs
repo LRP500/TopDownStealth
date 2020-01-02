@@ -9,8 +9,8 @@ namespace TopDownStealth.Characters
     {
         [SerializeField]
         [BoxGroup("Detection")]
-        private float _detectionTime = 2;
-        public float DetectionTime => _detectionTime;
+        private float _detectionSpeed = 2;
+        public float DetectionTime => _detectionSpeed;
 
         [SerializeField]
         [BoxGroup("Detection")]
@@ -19,11 +19,11 @@ namespace TopDownStealth.Characters
 
         [SerializeField]
         [BoxGroup("Detection")]
-        private float _angleMultiplier = 2;
+        private float angleExponent = 2;
 
         [SerializeField]
         [BoxGroup("Detection")]
-        private float _distanceMultiplier = 2;
+        private float _distanceExponent = 2;
 
         public float DetectionLevel { get; private set; } = 0;
 
@@ -50,25 +50,25 @@ namespace TopDownStealth.Characters
         {
             if (FOV.VisibleTargets.Count > 0)
             {
-                DetectionLevel += GetDetectionIncrement() * Time.deltaTime;
+                DetectionLevel += GetDetectionIncrement() * Time.deltaTime * 10;
 
-                if (DetectionLevel >= _detectionTime)
+                if (DetectionLevel >= 1)
                 {
                     /// "Game over man, game over !"
                     ///             - Private Hudson
-                    EventManager.Instance.Trigger(GameEvent.GameOver);
+                    //EventManager.Instance.Trigger(GameEvent.GameOver);
                     
                     /// Disable script to avoid triggering event multiple times.
-                    enabled = false;
+                    //enabled = false;
                 }
             }
             else
             {
-                DetectionLevel -= _dampeningSpeed * Time.deltaTime;
-                DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionTime);
+                DetectionLevel -= _dampeningSpeed * Time.deltaTime * 10;
+                DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionSpeed);
             }
 
-            DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionTime);
+            DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionSpeed);
         }
 
         private float GetDetectionIncrement()
@@ -82,13 +82,22 @@ namespace TopDownStealth.Characters
 
             /// Get angle increment.
             float angleToPlayer = Mathf.Abs(Vector3.Angle(transform.forward, dirToPlayer));
-            float angleIncrement = angleToPlayer.Convert(0, (FOV.Angle / 2), _angleMultiplier, 1);
+            /// Convert to a value between 0 and 1.
+            float angleIncrement = angleToPlayer.Convert(0, (FOV.Angle / 2), 1, 0);
+            /// Apply angle exponent.
+            angleIncrement = Mathf.Pow(angleIncrement, angleExponent);
+            /// Multiply by detection speed.
+            angleIncrement = angleIncrement * _detectionSpeed;
 
             /// Get distance increment.
             float distToPlayer = Vector3.Distance(transform.position, playerPos);
-            float distIncrement = distToPlayer.Convert(1, FOV.Radius, _distanceMultiplier, 1);
+            /// Convert to a value between 0 and 1.
+            float distIncrement = distToPlayer.Convert(1, FOV.Radius, 1, 0);
+            /// Apply angle exponent.
+            distIncrement = Mathf.Pow(distIncrement, _distanceExponent);
+            distIncrement = distIncrement * _detectionSpeed;
 
-            return angleIncrement * distIncrement;
+            return angleIncrement + distIncrement;
         }
     }
 }

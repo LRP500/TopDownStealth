@@ -14,14 +14,14 @@ namespace TopDownStealth
 
         private void Awake()
         {
-            EventManager.Instance.Subscribe(GameEvent.GameOver, OnGameOver);
-            EventManager.Instance.Subscribe(GameEvent.LevelExit, OnLevelExit);
+            EventManager.Instance?.Subscribe(GameEvent.GameOver, OnGameOver);
+            EventManager.Instance?.Subscribe(GameEvent.LevelExit, OnLevelExit);
         }
 
         private void OnDestroy()
         {
-            EventManager.Instance.Unsubscribe(GameEvent.GameOver, OnGameOver);
-            EventManager.Instance.Unsubscribe(GameEvent.LevelExit, OnLevelExit);
+            EventManager.Instance?.Unsubscribe(GameEvent.GameOver, OnGameOver);
+            EventManager.Instance?.Unsubscribe(GameEvent.LevelExit, OnLevelExit);
         }
 
         private void OnGameOver(object arg)
