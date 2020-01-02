@@ -10,7 +10,7 @@ namespace TopDownStealth.Characters
         [SerializeField]
         [BoxGroup("Detection")]
         private float _detectionSpeed = 2;
-        public float DetectionTime => _detectionSpeed;
+        public float DetectionSpeed => _detectionSpeed;
 
         [SerializeField]
         [BoxGroup("Detection")]
@@ -50,21 +50,21 @@ namespace TopDownStealth.Characters
         {
             if (FOV.VisibleTargets.Count > 0)
             {
-                DetectionLevel += GetDetectionIncrement() * Time.deltaTime * 10;
+                DetectionLevel += GetDetectionIncrement() * Time.deltaTime;
 
                 if (DetectionLevel >= 1)
                 {
                     /// "Game over man, game over !"
                     ///             - Private Hudson
-                    //EventManager.Instance.Trigger(GameEvent.GameOver);
+                    EventManager.Instance.Trigger(GameEvent.GameOver);
                     
                     /// Disable script to avoid triggering event multiple times.
-                    //enabled = false;
+                    enabled = false;
                 }
             }
             else
             {
-                DetectionLevel -= _dampeningSpeed * Time.deltaTime * 10;
+                DetectionLevel -= _dampeningSpeed * Time.deltaTime;
                 DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionSpeed);
             }
 

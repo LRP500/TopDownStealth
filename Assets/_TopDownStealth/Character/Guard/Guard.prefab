@@ -90,7 +90,7 @@ MonoBehaviour:
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
-  _detectionSpeed: 25
+  _detectionSpeed: 10
   _dampeningSpeed: 2
   angleExponent: 3
   _distanceExponent: 3
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 12
+  _radius: 10
   _angle: 110
   _targetMask:
     serializedVersion: 2

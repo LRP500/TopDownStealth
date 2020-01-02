@@ -12,7 +12,7 @@ namespace TopDownStealth
         private void Awake()
         {
             SetMin(0);
-            SetMax(_guard.DetectionTime);
+            SetMax(1);
         }
 
         private void Update()

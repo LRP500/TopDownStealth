@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TopDownStealth
 {
-    public class GameplayManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
     {
         [SerializeField]
         private SceneReference _gameOverScene = null;
