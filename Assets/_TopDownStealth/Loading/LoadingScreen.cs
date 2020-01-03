@@ -15,7 +15,7 @@ namespace TopDownStealth
 
         private IEnumerator Start()
         {
-            yield return StartCoroutine(NavigationManager.Instance.UnloadAllScenes());
+            yield return StartCoroutine(NavigationManager.Instance.UnloadAll());
             _continueButton.onClick.AddListener(OnContinueButtonClicked);
         }
 

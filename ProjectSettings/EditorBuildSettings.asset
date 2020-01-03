@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_TopDownStealth/Scenes/GameOver.unity
     guid: e7d973bb6edd9424793207e2637fd59a
+  - enabled: 1
+    path: Assets/_TopDownStealth/Scenes/PauseMenu.unity
+    guid: 81e4fabbbd103dc4287f9ab006faed25
   m_configObjects: {}

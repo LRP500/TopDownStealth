@@ -5,5 +5,7 @@
         public static readonly string LoadCurrentGame = "LoadCurrentGame";
         public static readonly string StartNewGame = "StartNewGame";
         public static readonly string ClearSave = "ClearSave";
+
+        public static readonly string ReturnToTitleMenu = "ReturnToTitle";
     }
 }

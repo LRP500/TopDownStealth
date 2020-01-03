@@ -2,9 +2,10 @@
     "name": "TopDownStealth",
     "references": [
         "GUID:6d01cf49ce0ded74dbf62f469f4ffc81",
-        "GUID:70c32d1a419fdc54187926026f03ce95",
+        "GUID:06cc598a719be1f49bb7e1bd997fbd66",
+        "GUID:97047f73b9ad8cb468a73c2b812886c9",
         "GUID:38b60048b2d289c4a9d762ee944348b6",
-        "GUID:06cc598a719be1f49bb7e1bd997fbd66"
+        "GUID:70c32d1a419fdc54187926026f03ce95"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
