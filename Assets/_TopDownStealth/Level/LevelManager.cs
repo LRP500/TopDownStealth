@@ -18,6 +18,11 @@ namespace TopDownStealth
             EventManager.Instance?.Subscribe(GameEvent.LevelExit, OnLevelExit);
         }
 
+        private void Start()
+        {
+            Time.timeScale = 1;
+        }
+
         private void OnDestroy()
         {
             EventManager.Instance?.Unsubscribe(GameEvent.GameOver, OnGameOver);

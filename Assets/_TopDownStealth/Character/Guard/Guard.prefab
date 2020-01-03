@@ -90,10 +90,10 @@ MonoBehaviour:
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
-  _detectionSpeed: 10
-  _dampeningSpeed: 2
-  angleExponent: 3
-  _distanceExponent: 3
+  _detectionSpeed: 2
+  _dampeningSpeed: 1
+  angleExponent: 1.5
+  _distanceExponent: 1.5
 --- !u!114 &2434338769585072320
 MonoBehaviour:
   m_ObjectHideFlags: 0

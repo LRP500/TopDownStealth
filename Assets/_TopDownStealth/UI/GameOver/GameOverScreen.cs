@@ -15,6 +15,9 @@ namespace TopDownStealth
         [SerializeField]
         private SceneReference _gameplayScene = null;
 
+        [SerializeField]
+        private SceneReference _titleMenuScene = null;
+
         private void Awake()
         {
             _titleMenuButton.onClick.AddListener(OnTitleMenuButtonClick);
@@ -23,6 +26,7 @@ namespace TopDownStealth
 
         private void OnTitleMenuButtonClick()
         {
+            StartCoroutine(NavigationManager.Instance.FastLoad(_titleMenuScene));
         }
 
         private void OnRestartButtonClick()

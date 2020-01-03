@@ -19,7 +19,21 @@ namespace TopDownStealth
             _continueButton.onClick.AddListener(OnContinueButtonClicked);
         }
 
+        private void Update()
+        {
+            if (Input.anyKey)
+            {
+                enabled = false;
+                Continue();
+            }
+        }
+
         private void OnContinueButtonClicked()
+        {
+            Continue();
+        }
+
+        private void Continue()
         {
             StartCoroutine(NavigationManager.Instance.FastLoad(_gameplayScene));
         }

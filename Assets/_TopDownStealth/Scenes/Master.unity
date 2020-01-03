@@ -209,4 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56dbd9033a3dd348a716d689897cd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startingScene: {fileID: 11400000, guid: c4cc12217ec35694a8a2a1d0dac25b46, type: 2}
   _gameplayScene: {fileID: 11400000, guid: a3c277fdfe2b92046ad9ec45361ec998, type: 2}
