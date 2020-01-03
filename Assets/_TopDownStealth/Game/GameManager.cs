@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void StartNewGame(object arg)
     {
-        StartCoroutine(NavigationManager.Instance.FastLoad(_gameplayScene));
+        StartCoroutine(NavigationManager.Instance.DeepLoad(_gameplayScene, null));
         _timeController.Resume();
     }
 }

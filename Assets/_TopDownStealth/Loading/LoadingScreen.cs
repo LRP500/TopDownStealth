@@ -8,24 +8,17 @@ namespace TopDownStealth
     public class LoadingScreen : MonoBehaviour
     {
         [SerializeField]
-        private Button _continueButton = null;
+        private GameObject _loadingText = null;
+
+        [SerializeField]
+        private GameObject _continueText = null;
 
         [SerializeField]
         private SceneReference _gameplayScene = null;
 
-        private IEnumerator Start()
+        private void Start()
         {
-            yield return StartCoroutine(NavigationManager.Instance.UnloadAll());
-            _continueButton.onClick.AddListener(OnContinueButtonClicked);
-        }
-
-        private void Update()
-        {
-            if (Input.anyKey)
-            {
-                enabled = false;
-                Continue();
-            }
+            StartCoroutine(FakeLoading());
         }
 
         private void OnContinueButtonClicked()
@@ -36,6 +29,32 @@ namespace TopDownStealth
         private void Continue()
         {
             StartCoroutine(NavigationManager.Instance.FastLoad(_gameplayScene));
+        }
+
+        /// <summary>
+        /// Sike.
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator FakeLoading()
+        {
+            _continueText.SetActive(false);
+            _loadingText.SetActive(true);
+
+            yield return NavigationManager.Instance.UnloadAll();
+
+            yield return new WaitForSeconds(2f);
+
+            _loadingText.SetActive(false);
+            _continueText.SetActive(true);
+
+            StartCoroutine(WaitForInput());
+        }
+
+        private IEnumerator WaitForInput()
+        {
+            yield return new WaitUntil(() => Input.anyKey);
+
+            Continue();
         }
     }
 }
