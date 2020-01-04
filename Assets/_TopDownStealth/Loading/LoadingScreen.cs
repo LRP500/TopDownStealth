@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Tools.Navigation;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TopDownStealth
 {
