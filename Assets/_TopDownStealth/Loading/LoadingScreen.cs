@@ -15,6 +15,11 @@ namespace TopDownStealth
         [SerializeField]
         private SceneReference _gameplayScene = null;
 
+        private void Awake()
+        {
+            Time.timeScale = 1;
+        }
+
         private void Start()
         {
             StartCoroutine(FakeLoading());

@@ -41,9 +41,9 @@ MonoBehaviour:
   _detectionInterval: 0.2
   _generateMesh: 1
   _viewMeshFilter: {fileID: 9118932430503511024}
-  _meshResolution: 4
+  _meshResolution: 10
   _edgeResolveIterations: 10
-  _edgeDistThreshold: 0.5
+  _edgeDistThreshold: 0.1
   _maskCutawayDistance: 0
 --- !u!1 &4325433655067681470
 GameObject:
@@ -140,6 +140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790792581975914025, guid: e03f0ee9947473e44a8874bd8aefffdc,
+        type: 3}
+      propertyPath: _speed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1790792581975914027, guid: e03f0ee9947473e44a8874bd8aefffdc,
         type: 3}

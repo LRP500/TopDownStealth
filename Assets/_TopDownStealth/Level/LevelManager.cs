@@ -12,10 +12,18 @@ namespace TopDownStealth
         [SerializeField]
         private SceneReference _gameplayScene = null;
 
+        [SerializeField]
+        private GameObject _playerPrefab = null;
+
+        [SerializeField]
+        private Transform _levelStart = null;
+
         private void Awake()
         {
+            InitializeLevel();
+
             EventManager.Instance?.Subscribe(GameEvent.GameOver, OnGameOver);
-            EventManager.Instance?.Subscribe(GameEvent.LevelExit, OnLevelExit);
+            EventManager.Instance?.Subscribe(GameEvent.ExitReached, OnExitReached);
         }
 
         private void Start()
@@ -26,7 +34,13 @@ namespace TopDownStealth
         private void OnDestroy()
         {
             EventManager.Instance?.Unsubscribe(GameEvent.GameOver, OnGameOver);
-            EventManager.Instance?.Unsubscribe(GameEvent.LevelExit, OnLevelExit);
+            EventManager.Instance?.Unsubscribe(GameEvent.ExitReached, OnExitReached);
+        }
+
+        private void InitializeLevel()
+        {
+            GameObject player = Instantiate(_playerPrefab, _levelStart);
+            player.transform.parent.SetParent(null);
         }
 
         private void OnGameOver(object arg)
@@ -34,7 +48,7 @@ namespace TopDownStealth
             StartCoroutine(NavigationManager.Instance.FastLoad(_gameOverScene));
         }
 
-        private void OnLevelExit(object arg)
+        private void OnExitReached(object arg)
         {
             StartCoroutine(NavigationManager.Instance.DeepLoad(_gameplayScene, null));
         }

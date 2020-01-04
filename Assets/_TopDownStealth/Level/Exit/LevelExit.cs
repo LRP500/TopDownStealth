@@ -50,7 +50,7 @@ namespace TopDownStealth
 
             _fade.alpha = 1;
 
-            EventManager.Instance.Trigger(GameEvent.LevelExit);
+            EventManager.Instance.Trigger(GameEvent.ExitReached);
         }
     }
 }

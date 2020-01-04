@@ -3,6 +3,6 @@
     public static class GameEvent
     {
         public static readonly string GameOver = "GameOver";
-        public static readonly string LevelExit = "LevelEnd";
+        public static readonly string ExitReached = "LevelEnd";
     }
 }
