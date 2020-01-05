@@ -32,7 +32,7 @@ namespace TopDownStealth.Characters
 
         [SerializeField]
         [BoxGroup("Navigation")]
-        [ShowIf(nameof(_path))]
+        [ShowIf("@ _hasPath && _path != null")]
         [PropertyRange(0, "@ _path ? _path.GetWaypointCount() - 1 : 0")]
         [OnValueChanged(nameof(ResetPosition))]
         private int _initialPathPosition = 0;

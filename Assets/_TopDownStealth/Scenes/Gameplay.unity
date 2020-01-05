@@ -617,8 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f2d32455425784d8b3559bba8004ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelPrefab: {fileID: 7564709915236722067, guid: 95144c5449031374f94b386c6be9e76f,
-    type: 3}
   _playerPrefab: {fileID: -6555764719984846557, guid: a99569a22c0c0dd46a3d4087c5d18464,
     type: 3}
   _gameOverScene: {fileID: 11400000, guid: b16dde867eff4ff4d8e66d72a82de77a, type: 2}

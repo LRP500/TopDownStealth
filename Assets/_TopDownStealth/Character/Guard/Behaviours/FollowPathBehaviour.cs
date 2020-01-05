@@ -31,14 +31,14 @@ namespace TopDownStealth.Characters.Behaviours
                 Vector3[] waypoints = character.Brain.Remember<Vector3[]>("path_waypoints");
                 int current = character.Brain.Remember<int>("current_waypoint_index");
 
-                if (waypoints != null && waypoints.Length > 2)
+                if (waypoints != null && waypoints.Length > 1)
                 {
                     Vector3 destination = waypoints[current];
 
                     if (HasReachedWaypoint(character, destination))
                     {
                         yield return new WaitForSeconds(_idleTimeOnReachWaypoint);
-                        
+
                         GetNextWaypoint(ref current, waypoints);
                         character.Brain.Remember("current_waypoint_index", current);
                         destination = waypoints[current];
@@ -50,8 +50,9 @@ namespace TopDownStealth.Characters.Behaviours
                     Vector3 direction = destination - character.transform.position;
                     character.Move(direction.normalized);
 
-                    yield return null;
                 }
+
+                yield return null;
             }
         }
 
