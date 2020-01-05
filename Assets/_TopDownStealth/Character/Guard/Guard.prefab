@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 10
-  _angle: 110
+  _angle: 135
   _targetMask:
     serializedVersion: 2
     m_Bits: 1024

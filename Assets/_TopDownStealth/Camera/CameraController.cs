@@ -8,12 +8,9 @@ namespace TopDownStealth
         [SerializeField]
         private CinemachineVirtualCamera _camera = null;
 
-        [SerializeField]
-        private CharacterVariable _player = null;
-
-        private void Start()
+        public void SetFollowTarget(Transform target)
         {
-            _camera.m_Follow = _player.Value.transform;
+            _camera.m_Follow = target;
         }
     }
 }

@@ -7,5 +7,6 @@
         public static readonly string ClearSave = "ClearSave";
 
         public static readonly string ReturnToTitleMenu = "ReturnToTitle";
+        public static readonly string LoadNextLevel = "LoadNextLevel";
     }
 }

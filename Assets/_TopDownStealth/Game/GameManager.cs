@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
     [BoxGroup("Scenes")]
     private SceneReference _pauseMenu = null;
 
+    [SerializeField]
+    [BoxGroup("Gameplay")]
+    private LevelSelectableList _levels = null;
+
+    public static Level CurrentLevel { get; private set; } = null;
+
     private void Awake()
     {
         Initialize();
@@ -58,7 +64,10 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.Subscribe(SystemEvent.StartNewGame, StartNewGame);
         EventManager.Instance.Subscribe(SystemEvent.LoadCurrentGame, LoadCurrentGame);
         EventManager.Instance.Subscribe(SystemEvent.ClearSave, ClearSave);
+        EventManager.Instance.Subscribe(SystemEvent.LoadNextLevel, LoadNextLevel);
         EventManager.Instance.Subscribe(SystemEvent.ReturnToTitleMenu, ReturnToTitleMenu);
+
+        CurrentLevel = GetNextLevel();
     }
 
     private void ReturnToTitleMenu(object arg)
@@ -79,9 +88,20 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    private void StartNewGame(object arg)
+    private void LoadNextLevel(object arg)
+    {
+        CurrentLevel = GetNextLevel();
+        StartNewGame();
+    }
+
+    private void StartNewGame(object arg = null)
     {
         StartCoroutine(NavigationManager.Instance.DeepLoad(_gameplayScene, null));
         _timeController.Resume();
+    }
+
+    private Level GetNextLevel()
+    {
+        return _levels.Random();
     }
 }

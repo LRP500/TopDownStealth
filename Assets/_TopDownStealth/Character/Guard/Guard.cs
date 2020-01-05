@@ -56,7 +56,7 @@ namespace TopDownStealth.Characters
                 {
                     /// "Game over man, game over !"
                     ///             - Private Hudson
-                    EventManager.Instance.Trigger(GameEvent.GameOver);
+                    EventManager.Instance.Trigger(GameplayEvent.GameOver);
                     
                     /// Disable script to avoid triggering event multiple times.
                     enabled = false;
