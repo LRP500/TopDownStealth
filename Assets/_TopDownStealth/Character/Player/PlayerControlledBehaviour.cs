@@ -13,7 +13,7 @@ namespace TopDownStealth.Characters.Behaviours
         [SerializeField]
         private CameraVariable _mainCamera = null;
 
-        private Character _character = null;
+        private Player _player = null;
 
         public override void Initialize(Character character)
         {
@@ -21,12 +21,19 @@ namespace TopDownStealth.Characters.Behaviours
 
         public override IEnumerator Run(Character character)
         {
-            _character = character;
+            _player = character as Player;
 
             while (character.enabled)
             {
-                _character.LookAt(GetMousePosition());
+                _player.LookAt(GetMousePosition());
+
                 HandleMovement();
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    _player.Scanner.Activate();
+                }
+
                 yield return null;
             }
         }
@@ -46,7 +53,7 @@ namespace TopDownStealth.Characters.Behaviours
 
         private void HandleMovement()
         {
-            _character.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+            _player.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
         }
     }
 }

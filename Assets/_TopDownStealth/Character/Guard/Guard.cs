@@ -48,7 +48,7 @@ namespace TopDownStealth.Characters
 
         private void DetectPlayer()
         {
-            if (FOV.VisibleTargets.Count > 0)
+            if (FieldOfView.VisibleTargets.Count > 0)
             {
                 DetectionLevel += GetDetectionIncrement() * Time.deltaTime;
 
@@ -74,7 +74,7 @@ namespace TopDownStealth.Characters
         private float GetDetectionIncrement()
         {
             /// Get player position.
-            Vector3 playerPos = FOV.VisibleTargets[0].position;
+            Vector3 playerPos = FieldOfView.VisibleTargets[0].position;
             playerPos = new Vector3(playerPos.x, 0, playerPos.z);
 
             /// Get direction to player.
@@ -83,7 +83,7 @@ namespace TopDownStealth.Characters
             /// Get angle increment.
             float angleToPlayer = Mathf.Abs(Vector3.Angle(transform.forward, dirToPlayer));
             /// Convert to a value between 0 and 1.
-            float angleIncrement = angleToPlayer.Convert(0, (FOV.Angle / 2), 1, 0);
+            float angleIncrement = angleToPlayer.Convert(0, (FieldOfView.Angle / 2), 1, 0);
             /// Apply angle exponent.
             angleIncrement = Mathf.Pow(angleIncrement, angleExponent);
             /// Multiply by detection speed.
@@ -92,7 +92,7 @@ namespace TopDownStealth.Characters
             /// Get distance increment.
             float distToPlayer = Vector3.Distance(transform.position, playerPos);
             /// Convert to a value between 0 and 1.
-            float distIncrement = distToPlayer.Convert(1, FOV.Radius, 1, 0);
+            float distIncrement = distToPlayer.Convert(1, FieldOfView.Radius, 1, 0);
             /// Apply angle exponent.
             distIncrement = Mathf.Pow(distIncrement, _distanceExponent);
             distIncrement = distIncrement * _detectionSpeed;

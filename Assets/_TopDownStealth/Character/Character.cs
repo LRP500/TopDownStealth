@@ -15,9 +15,8 @@ namespace TopDownStealth.Characters
         private CharacterBehaviour _behaviour = null;
 
         [SerializeField]
-        [BoxGroup("Detection")]
-        private FieldOfView _fov = null;
-        public FieldOfView FOV => _fov;
+        private FieldOfView _fieldOfView = null;
+        public FieldOfView FieldOfView => _fieldOfView;
 
         [SerializeField]
         [BoxGroup("Navigation")]
