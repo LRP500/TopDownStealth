@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behaviour: {fileID: 11400000, guid: d68b20ffd8f6d5c4c91ab896341c0d7a, type: 2}
-  _fov: {fileID: 2434338769585072320}
+  _fieldOfView: {fileID: 2434338769585072320}
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   _dampeningSpeed: 0.5
   angleExponent: 1.5
   _distanceExponent: 1.5
+  _runtimeGuards: {fileID: 11400000, guid: 3393e374168771d47b248364a4467784, type: 2}
 --- !u!114 &2434338769585072320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +237,7 @@ MonoBehaviour:
   _updateMode: 1
   _slider: {fileID: 3032695748091741644}
   _guard: {fileID: 361016628823294318}
+  _container: {fileID: 7191536289977889245}
 --- !u!1 &7191536289977889245
 GameObject:
   m_ObjectHideFlags: 0

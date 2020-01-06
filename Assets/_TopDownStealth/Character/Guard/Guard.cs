@@ -25,11 +25,17 @@ namespace TopDownStealth.Characters
         [BoxGroup("Detection")]
         private float _distanceExponent = 2;
 
+        [BoxGroup("Misc")]
+        [SerializeField, Required]
+        private CharacterListVariable _runtimeGuards = null;
+
         public float DetectionLevel { get; private set; } = 0;
 
         protected override void Awake()
         {
             base.Awake();
+
+            _runtimeGuards.Add(this);
 
             Side = CharacterSide.Enemy;
         }
@@ -39,6 +45,11 @@ namespace TopDownStealth.Characters
             base.Update();
 
             DetectPlayer();
+        }
+
+        private void OnDestroy()
+        {
+            _runtimeGuards.Remove(this);
         }
 
         protected override void Die()

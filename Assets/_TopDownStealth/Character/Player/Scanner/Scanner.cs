@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TopDownStealth.Characters;
 using UnityEngine;
 
 namespace TopDownStealth
@@ -16,6 +17,9 @@ namespace TopDownStealth
 
         [SerializeField]
         private SpriteRenderer _renderer = null;
+
+        [SerializeField]
+        private CharacterListVariable _detectableCharacters = null;
 
         private bool _waveActive = false;
 
@@ -46,8 +50,15 @@ namespace TopDownStealth
 
             while (WaveDistance < _waveMaxDistance)
             {
+                /// Update distance
                 WaveDistance += _waveSpeed * Time.deltaTime;
+                
+                /// Update renderer
                 _renderer.transform.localScale = new Vector3(WaveDistance, WaveDistance, 0);
+
+                /// Handle object detection
+                Detect();
+
                 yield return null;
             }
 
@@ -64,6 +75,17 @@ namespace TopDownStealth
             }
 
             return Time.time < _cooldownTime || Time.time - _lastWaveTime > _cooldownTime;
+        }
+
+        private void Detect()
+        {
+            foreach (Character character in _detectableCharacters.Items)
+            {
+                if (Vector3.Distance(transform.position, character.transform.position) <= WaveDistance)
+                {
+                    character.GetComponent<Detectable>().Detect();
+                }
+            }
         }
     }
 }

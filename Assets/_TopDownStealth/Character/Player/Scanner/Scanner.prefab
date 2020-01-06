@@ -106,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 3153832494965264030}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0}
   m_Children:
   - {fileID: 3153832493807343286}
   m_Father: {fileID: 3153832495412031425}
@@ -156,7 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba5971c93833a148a979f1595d76dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveSpeed: 3
-  _waveMaxDistance: 5
+  _waveSpeed: 35
+  _waveMaxDistance: 25
   _cooldownTime: 2
   _renderer: {fileID: 3153832493807343241}
+  _detectableCharacters: {fileID: 11400000, guid: 3393e374168771d47b248364a4467784,
+    type: 2}

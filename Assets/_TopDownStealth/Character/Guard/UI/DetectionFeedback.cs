@@ -9,6 +9,9 @@ namespace TopDownStealth
         [SerializeField]
         private Guard _guard = null;
 
+        [SerializeField]
+        private GameObject _container = null;
+
         private void Awake()
         {
             SetMin(0);
@@ -18,6 +21,7 @@ namespace TopDownStealth
         private void Update()
         {
             SetValue(_guard.DetectionLevel);
+            _container.SetActive(Value != 0);
         }
     }
 }
