@@ -70,6 +70,8 @@ namespace TopDownStealth
 
             _camera.SetFollowTarget(_player.transform);
 
+            EventManager.Instance.Trigger(GameplayEvent.LevelInitialized);
+
             yield return Fade(1, 0, _fadeInDuration);
 
             EventManager.Instance?.Subscribe(GameplayEvent.GameOver, OnGameOver);
