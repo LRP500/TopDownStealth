@@ -23,6 +23,7 @@
         {
             "RenderType" = "Transparent"
             "Queue" = "Geometry"
+            "Minimap" = "Detectable"
         }
 
 		Stencil

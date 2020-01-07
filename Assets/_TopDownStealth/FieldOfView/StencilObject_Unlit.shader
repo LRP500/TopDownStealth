@@ -15,6 +15,7 @@
         {
             "RenderType" = "Opaque"
             "Queue" = "Geometry"
+            "Minimap" = "Visible"
         }
         
 		Stencil

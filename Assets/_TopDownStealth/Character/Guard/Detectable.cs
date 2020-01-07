@@ -27,7 +27,19 @@ namespace TopDownStealth
         private void SetDetected(bool detected)
         {
             Detected = detected;
+
+            /// Outline shader property
             _renderer.material.SetFloat("_EnableOutline", Detected ? 1 : 0);
+
+            /// Minimap shader keyword
+            if (Detected)
+            {
+                Shader.EnableKeyword("MINIMAP_ENABLED");
+            }
+            else
+            {
+                Shader.DisableKeyword("MINIMAP_ENABLED");
+            }
         }
 
         private IEnumerator UpdateDetectionState()

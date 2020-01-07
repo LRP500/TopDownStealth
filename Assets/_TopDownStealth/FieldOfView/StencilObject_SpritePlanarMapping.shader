@@ -16,8 +16,9 @@
         {
             "RenderType" = "Transparent"
             "Queue" = "Transparent"
+            "Minimap" = "Visible"
         }
-        
+
 		Stencil
 		{
 			Ref [_StencilRef]
