@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using Tool.Extensions;
+using Tools.Extensions;
 using UnityEngine;
 
 namespace TopDownStealth.Characters
@@ -80,7 +81,7 @@ namespace TopDownStealth.Characters
             }
         }
 
-        public IEnumerator LookAt(Vector3 target, float duration)
+        public IEnumerator TimedLookAt(Vector3 target, float duration)
         {
             float elapsed = 0;
 
@@ -92,6 +93,24 @@ namespace TopDownStealth.Characters
             {
                 elapsed += Time.deltaTime;
                 transform.rotation = Quaternion.Lerp(initialRot, targetRot, elapsed / duration);
+                yield return null;
+            }
+        }
+
+        public IEnumerator LookAt(Vector3 target, float speed)
+        {
+            float angle = float.PositiveInfinity;
+
+            while (!angle.AlmostEqual(0, 0.1f))
+            {
+                /// Rotate towards target
+                Quaternion rotation = Quaternion.LookRotation(target - transform.position);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * speed);
+
+                /// Calculate new angle to target
+                Vector3 direction = (target - transform.position).normalized;
+                angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+
                 yield return null;
             }
         }
