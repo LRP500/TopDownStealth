@@ -637,7 +637,8 @@ MonoBehaviour:
   _rotateWithTarget: 0
   _offsetZ: -3.5
   _overDrawColor: {r: 0.41509432, g: 0.15523852, b: 0, a: 1}
-  _detectableColor: {r: 0, g: 0.34149122, b: 1, a: 1}
+  _detectableColor: {r: 0, g: 0.45, b: 1, a: 1}
+  _fieldOfViewColor: {r: 0, g: 0.07763941, b: 0.23529412, a: 1}
 --- !u!1 &799092099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1743,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
+  far clip plane: 200
   field of view: 115.1
   orthographic: 1
   orthographic size: 15
@@ -1754,11 +1755,11 @@ Camera:
   m_TargetTexture: {fileID: 8400000, guid: 72071de27bc842c43a20b93abda4759d, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1970086694

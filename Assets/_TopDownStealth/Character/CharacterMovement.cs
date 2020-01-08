@@ -9,6 +9,10 @@ namespace TopDownStealth.Characters
         private float _speed = 5f;
 
         [SerializeField]
+        private float _rotationSpeed = 20f;
+        public float RotationSpeed => _rotationSpeed;
+
+        [SerializeField]
         private float _gravity = 20f;
 
         private CharacterController _controller = null;

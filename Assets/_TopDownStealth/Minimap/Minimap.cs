@@ -1,5 +1,4 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TopDownStealth
 {
@@ -23,10 +22,14 @@ namespace TopDownStealth
         [SerializeField]
         private Color _detectableColor = Color.white;
 
+        [SerializeField]
+        private Color _fieldOfViewColor = Color.white;
+
         private void OnValidate()
         {
             Shader.SetGlobalColor("_OverDrawColor", _overDrawColor);
             Shader.SetGlobalColor("_DetectableColor", _detectableColor);
+            Shader.SetGlobalColor("_FieldOfViewColor", _fieldOfViewColor);
         }
 
         private void LateUpdate()

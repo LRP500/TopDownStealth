@@ -9,6 +9,58 @@
         [Power(4)] _FresnelExponent("Fresnel Exponent", Range(0, 4)) = 1
     }
 
+    /// Ground
+    SubShader
+    {
+        Tags
+        {
+            "RenderType" = "Transparent"
+            "Queue" = "Transparent"
+            "Minimap" = "Solid"
+        }
+        
+        ZTest Always
+        ZWrite Off
+        Blend One One
+
+        Pass
+        {
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+            };
+
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+            };
+
+            fixed4 _OverDrawColor;
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                return _OverDrawColor;
+            }
+
+            ENDCG
+        }
+    }
+    
+    // Obstacles
     SubShader
     {
         Tags
@@ -18,13 +70,18 @@
             "Minimap" = "Visible"
         }
         
-        ZTest Always
         ZWrite Off
         Blend One One
 
+        Stencil
+        {
+            Ref 10
+            Comp Always
+            // Pass Replace
+        }
+
         Pass
         {
-
             CGPROGRAM
 
             #pragma vertex vert
@@ -60,6 +117,7 @@
         }
     }
 
+    /// Detectables
     SubShader
     {
         Tags
@@ -69,13 +127,18 @@
             "Minimap" = "Detectable"
         }
         
-        ZTest Always
         ZWrite Off
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend One One
+
+        // Stencil
+        // {
+        //     Ref 10
+        //     Comp Equal
+        //     Pass Replace
+        // }
 
         Pass
         {
-
             CGPROGRAM
 
             #pragma shader_feature MINIMAP_ENABLED
@@ -108,6 +171,76 @@
             {
             #if MINIMAP_ENABLED
                 fixed4 col = _DetectableColor;
+            #endif
+
+            #if !MINIMAP_ENABLED
+                fixed4 col = fixed4(0, 0, 0 , 0);
+            #endif
+
+                return col;
+            }
+
+            ENDCG
+        }
+    }
+    
+    /// Field of view
+    SubShader
+    {
+        Tags
+        {
+            "RenderType" = "Transparent"
+            "Queue" = "Transparent"
+            "Minimap" = "FieldOfView"
+        }
+        
+        /// Non additive transparency
+        Stencil
+        {
+            Ref 20
+            ReadMask 20
+            Comp NotEqual
+            Pass Replace
+        }
+
+        ZWrite Off
+        Blend One One
+
+        Pass
+        {
+
+            CGPROGRAM
+
+            #pragma shader_feature MINIMAP_ENABLED
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+            };
+
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+            };
+
+            fixed4 _FieldOfViewColor;
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+            #if MINIMAP_ENABLED
+                fixed4 col = _FieldOfViewColor;
             #endif
 
             #if !MINIMAP_ENABLED

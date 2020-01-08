@@ -13,9 +13,6 @@ namespace TopDownStealth.Characters.Behaviours
         [SerializeField]
         private float _idleTimeOnReachWaypoint = 1f;
 
-        [SerializeField]
-        private float _rotationTime = 1f;
-
         public override void Initialize(Character character)
         {
             Vector3[] waypoints = character.Path?.Waypoints;
@@ -43,7 +40,7 @@ namespace TopDownStealth.Characters.Behaviours
                         character.Brain.Remember("current_waypoint_index", current);
                         destination = waypoints[current];
 
-                        yield return character.StartCoroutine(character.LookAt(destination, _rotationTime));
+                        yield return character.StartCoroutine(character.RotateTowards(destination));
                     }
 
                     destination.SetY(0);

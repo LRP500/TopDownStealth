@@ -32,9 +32,6 @@ namespace TopDownStealth.Characters.Behaviours
         [SerializeField]
         private float _idleTime = 2f;
 
-        [SerializeField]
-        private float _rotationSpeed = 2f;
-
         public override void Initialize(Character character)
         {
         }
@@ -47,9 +44,9 @@ namespace TopDownStealth.Characters.Behaviours
                 {
                     if (_direction.HasFlag(value))
                     {
-                        Vector3 dir = character.transform.position + _directions[value];
+                        Vector3 direction = character.transform.position + _directions[value];
                         yield return new WaitForSeconds(_idleTime);
-                        yield return character.StartCoroutine(character.LookAt(dir, _rotationSpeed));
+                        yield return character.StartCoroutine(character.RotateTowards(direction));
                     }
                 }
             }

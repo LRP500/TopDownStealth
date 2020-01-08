@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reachDistanceTolerance: 0.05
   _idleTimeOnReachWaypoint: 2
-  _rotationTime: 0.3
+  _rotationTime: 50

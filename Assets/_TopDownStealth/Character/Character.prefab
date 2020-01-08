@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _rotationSpeed: 50
   _gravity: 20
 --- !u!114 &5035128849647526782
 MonoBehaviour:

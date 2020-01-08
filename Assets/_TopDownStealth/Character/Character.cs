@@ -81,7 +81,7 @@ namespace TopDownStealth.Characters
             }
         }
 
-        public IEnumerator TimedLookAt(Vector3 target, float duration)
+        public IEnumerator RotateTowards(Vector3 target, float duration)
         {
             float elapsed = 0;
 
@@ -97,7 +97,7 @@ namespace TopDownStealth.Characters
             }
         }
 
-        public IEnumerator LookAt(Vector3 target, float speed)
+        public IEnumerator RotateTowards(Vector3 target)
         {
             float angle = float.PositiveInfinity;
 
@@ -105,7 +105,8 @@ namespace TopDownStealth.Characters
             {
                 /// Rotate towards target
                 Quaternion rotation = Quaternion.LookRotation(target - transform.position);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * speed);
+                float delta = Time.deltaTime * _mover.RotationSpeed;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, delta);
 
                 /// Calculate new angle to target
                 Vector3 direction = (target - transform.position).normalized;
