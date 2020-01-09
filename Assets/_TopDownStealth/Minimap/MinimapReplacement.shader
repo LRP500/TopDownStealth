@@ -9,17 +9,16 @@
         [Power(4)] _FresnelExponent("Fresnel Exponent", Range(0, 4)) = 1
     }
 
-    /// Ground
+    // Ground
     SubShader
     {
         Tags
         {
             "RenderType" = "Transparent"
             "Queue" = "Transparent"
-            "Minimap" = "Solid"
+            "Minimap" = "Ground"
         }
         
-        ZTest Always
         ZWrite Off
         Blend One One
 
@@ -67,9 +66,9 @@
         {
             "RenderType" = "Transparent"
             "Queue" = "Transparent"
-            "Minimap" = "Visible"
+            "Minimap" = "Obstacle"
         }
-        
+
         ZWrite Off
         Blend One One
 
@@ -77,7 +76,7 @@
         {
             Ref 10
             Comp Always
-            // Pass Replace
+            Pass Replace
         }
 
         Pass
@@ -123,19 +122,18 @@
         Tags
         {
             "RenderType" = "Transparent"
-            "Queue" = "Transparent"
+            "Queue" = "Transparent+1"
             "Minimap" = "Detectable"
         }
         
         ZWrite Off
         Blend One One
 
-        // Stencil
-        // {
-        //     Ref 10
-        //     Comp Equal
-        //     Pass Replace
-        // }
+        Stencil
+        {
+            Ref 10
+            Comp Always
+        }
 
         Pass
         {
@@ -190,17 +188,8 @@
         Tags
         {
             "RenderType" = "Transparent"
-            "Queue" = "Transparent"
+            "Queue" = "Transparent+2"
             "Minimap" = "FieldOfView"
-        }
-        
-        /// Non additive transparency
-        Stencil
-        {
-            Ref 20
-            ReadMask 20
-            Comp NotEqual
-            Pass Replace
         }
 
         ZWrite Off
@@ -208,6 +197,11 @@
 
         Pass
         {
+            Stencil
+            {
+                Ref 10
+                Comp NotEqual
+            }
 
             CGPROGRAM
 
@@ -252,5 +246,60 @@
 
             ENDCG
         }
+
+        // Pass
+        // {
+        //     // Non additive transparency
+        //     Stencil
+        //     {
+        //         Ref 20
+        //         ReadMask 20
+        //         Comp NotEqual
+        //         Pass Replace
+        //     }
+
+        //     CGPROGRAM
+
+        //     #pragma shader_feature MINIMAP_ENABLED
+
+        //     #pragma vertex vert
+        //     #pragma fragment frag
+
+        //     #include "UnityCG.cginc"
+
+        //     struct appdata
+        //     {
+        //         float4 vertex : POSITION;
+        //     };
+
+        //     struct v2f
+        //     {
+        //         float4 vertex : SV_POSITION;
+        //     };
+
+        //     fixed4 _FieldOfViewColor;
+
+        //     v2f vert(appdata v)
+        //     {
+        //         v2f o;
+        //         o.vertex = UnityObjectToClipPos(v.vertex);
+        //         return o;
+        //     }
+
+        //     fixed4 frag(v2f i) : SV_Target
+        //     {
+        //     #if MINIMAP_ENABLED
+        //         fixed4 col = _FieldOfViewColor;
+        //     #endif
+
+        //     #if !MINIMAP_ENABLED
+        //         fixed4 col = fixed4(0, 0, 0 , 0);
+        //     #endif
+
+        //         return col;
+        //     }
+
+        //     ENDCG
+        // }
     }
 }

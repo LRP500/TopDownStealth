@@ -635,7 +635,7 @@ MonoBehaviour:
   _target: {fileID: 11400000, guid: 4fffd20963f498147ae3f755585680ed, type: 2}
   _followTarget: 1
   _rotateWithTarget: 0
-  _offsetZ: -3.5
+  _offsetZ: -20
   _overDrawColor: {r: 0.41509432, g: 0.15523852, b: 0, a: 1}
   _detectableColor: {r: 0, g: 0.45, b: 1, a: 1}
   _fieldOfViewColor: {r: 0, g: 0.07763941, b: 0.23529412, a: 1}
@@ -673,7 +673,7 @@ MonoBehaviour:
   _gameOverScene: {fileID: 11400000, guid: b16dde867eff4ff4d8e66d72a82de77a, type: 2}
   _fadeOverlay: {fileID: 137272024}
   _fadeInDuration: 0
-  _fadeOutDuration: 1
+  _fadeOutDuration: 0.5
   _camera: {fileID: 483745795}
 --- !u!4 &799092101
 Transform:
@@ -1770,7 +1770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970086692}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 20, z: -20}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 747623436}
