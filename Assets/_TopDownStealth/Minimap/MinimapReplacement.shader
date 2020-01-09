@@ -200,7 +200,11 @@
             Stencil
             {
                 Ref 10
+                ReadMask 10
+                // Ref 10
+                WriteMask 15
                 Comp NotEqual
+                Pass Replace
             }
 
             CGPROGRAM
@@ -247,59 +251,62 @@
             ENDCG
         }
 
-        // Pass
-        // {
-        //     // Non additive transparency
-        //     Stencil
-        //     {
-        //         Ref 20
-        //         ReadMask 20
-        //         Comp NotEqual
-        //         Pass Replace
-        //     }
+        Pass
+        {
+            // Non additive transparency
+            Stencil
+            {
+                // Ref 15
+                // ReadMask 15
+                // Comp NotEqual
+                // Pass Replace
 
-        //     CGPROGRAM
+                Ref 15
+                Comp Equal
+            }
 
-        //     #pragma shader_feature MINIMAP_ENABLED
+            CGPROGRAM
 
-        //     #pragma vertex vert
-        //     #pragma fragment frag
+            #pragma shader_feature MINIMAP_ENABLED
 
-        //     #include "UnityCG.cginc"
+            #pragma vertex vert
+            #pragma fragment frag
 
-        //     struct appdata
-        //     {
-        //         float4 vertex : POSITION;
-        //     };
+            #include "UnityCG.cginc"
 
-        //     struct v2f
-        //     {
-        //         float4 vertex : SV_POSITION;
-        //     };
+            struct appdata
+            {
+                float4 vertex : POSITION;
+            };
 
-        //     fixed4 _FieldOfViewColor;
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+            };
 
-        //     v2f vert(appdata v)
-        //     {
-        //         v2f o;
-        //         o.vertex = UnityObjectToClipPos(v.vertex);
-        //         return o;
-        //     }
+            fixed4 _FieldOfViewColor;
 
-        //     fixed4 frag(v2f i) : SV_Target
-        //     {
-        //     #if MINIMAP_ENABLED
-        //         fixed4 col = _FieldOfViewColor;
-        //     #endif
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
 
-        //     #if !MINIMAP_ENABLED
-        //         fixed4 col = fixed4(0, 0, 0 , 0);
-        //     #endif
+            fixed4 frag(v2f i) : SV_Target
+            {
+            #if MINIMAP_ENABLED
+                fixed4 col = _FieldOfViewColor;
+            #endif
 
-        //         return col;
-        //     }
+            #if !MINIMAP_ENABLED
+                fixed4 col = fixed4(0, 0, 0 , 0);
+            #endif
 
-        //     ENDCG
-        // }
+                return col;
+            }
+
+            ENDCG
+        }
     }
 }

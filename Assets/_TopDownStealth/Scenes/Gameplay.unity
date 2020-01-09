@@ -638,7 +638,7 @@ MonoBehaviour:
   _offsetZ: -20
   _overDrawColor: {r: 0.41509432, g: 0.15523852, b: 0, a: 1}
   _detectableColor: {r: 0, g: 0.45, b: 1, a: 1}
-  _fieldOfViewColor: {r: 0, g: 0.07763941, b: 0.23529412, a: 1}
+  _fieldOfViewColor: {r: 0, g: 0.16352208, b: 0.49056602, a: 1}
 --- !u!1 &799092099
 GameObject:
   m_ObjectHideFlags: 0
