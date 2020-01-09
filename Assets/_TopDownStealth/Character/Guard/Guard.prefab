@@ -169,7 +169,7 @@ MonoBehaviour:
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
-  _detectionSpeed: 2
+  _detectionSpeed: 3
   _dampeningSpeed: 0.5
   angleExponent: 1.5
   _distanceExponent: 1.5

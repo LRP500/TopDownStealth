@@ -25,11 +25,14 @@ namespace TopDownStealth
         [SerializeField]
         private Color _fieldOfViewColor = Color.white;
 
+        private void Awake()
+        {
+            SetGlobalProperties();   
+        }
+
         private void OnValidate()
         {
-            Shader.SetGlobalColor("_OverDrawColor", _overDrawColor);
-            Shader.SetGlobalColor("_DetectableColor", _detectableColor);
-            Shader.SetGlobalColor("_FieldOfViewColor", _fieldOfViewColor);
+            SetGlobalProperties();
         }
 
         private void LateUpdate()
@@ -44,6 +47,13 @@ namespace TopDownStealth
             {
                 transform.rotation = Quaternion.Euler(90f, _target.Value.transform.eulerAngles.y, 0f);
             }
+        }
+
+        private void SetGlobalProperties()
+        {
+            Shader.SetGlobalColor("_OverDrawColor", _overDrawColor);
+            Shader.SetGlobalColor("_DetectableColor", _detectableColor);
+            Shader.SetGlobalColor("_FieldOfViewColor", _fieldOfViewColor);
         }
     }
 }

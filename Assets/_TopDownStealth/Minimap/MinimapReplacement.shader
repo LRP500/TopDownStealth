@@ -201,7 +201,6 @@
             {
                 Ref 10
                 ReadMask 10
-                // Ref 10
                 WriteMask 15
                 Comp NotEqual
                 Pass Replace
