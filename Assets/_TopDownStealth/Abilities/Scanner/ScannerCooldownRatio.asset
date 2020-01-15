@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b917bb8a923c6bd4abebd6936e0712a6, type: 3}
-  m_Name: PlayerControlled
+  m_Script: {fileID: 11500000, guid: f1b8bc3215cadf743b124f412923e98e, type: 3}
+  m_Name: ScannerCooldownRatio
   m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 11400000, guid: acfd31cb33271ad4383b7367647bce7f, type: 2}
-  _rotateTowardsMouse: 0
+  _value: 0.9857341

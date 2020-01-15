@@ -9,6 +9,10 @@ namespace TopDownStealth.Characters
         public Scanner Scanner => _scanner;
 
         [SerializeField]
+        private Camouflage _camouflage = null;
+        public Camouflage Camouflage => _camouflage;
+
+        [SerializeField]
         private CharacterVariable _runtimeReference = null;
 
         protected override void Awake()

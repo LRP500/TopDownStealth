@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Tools;
 using Tools.Variables;
 using UnityEngine;
 
@@ -13,10 +14,19 @@ namespace TopDownStealth.Characters.Behaviours
         [SerializeField]
         private CameraVariable _mainCamera = null;
 
+        [SerializeField]
+        private bool _rotateTowardsMouse = true;
+
         private Player _player = null;
+
+        private bool _movementInputEnabled = true;
 
         public override void Initialize(Character character)
         {
+            _movementInputEnabled = true;
+
+            EventManager.Instance.Subscribe(GameplayEvent.EnablePlayerMovementInput, OnEnablePlayerInput);
+            EventManager.Instance.Subscribe(GameplayEvent.DisablePlayerMovementInput, OnDisablePlayerInput);
         }
 
         public override IEnumerator Run(Character character)
@@ -25,17 +35,47 @@ namespace TopDownStealth.Characters.Behaviours
 
             while (character.enabled)
             {
-                _player.LookAt(GetMousePosition());
-
+                HandleRotation();
                 HandleMovement();
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    _player.Scanner.Activate();
-                }
-
+                HandleAbilities();
                 yield return null;
             }
+        }
+
+        private void HandleAbilities()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _player.Scanner.Activate();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _player.Camouflage.Activate();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                _player.Camouflage.Deactivate();
+            }
+        }
+
+        private void OnDisablePlayerInput(object arg = null)
+        {
+            _movementInputEnabled = false;
+        }
+
+        private void OnEnablePlayerInput(object arg = null)
+        {
+            _movementInputEnabled = true;
+        }
+
+        public override void Reset(Character character)
+        {
+            base.Reset(character);
+
+            EventManager.Instance.Unsubscribe(GameplayEvent.EnablePlayerMovementInput, OnEnablePlayerInput);
+            EventManager.Instance.Unsubscribe(GameplayEvent.DisablePlayerMovementInput, OnDisablePlayerInput);
         }
 
         private Vector3 GetMousePosition()
@@ -51,9 +91,20 @@ namespace TopDownStealth.Characters.Behaviours
             return Vector3.zero;
         }
 
+        private void HandleRotation()
+        {
+            if (_rotateTowardsMouse)
+            {
+                _player.LookAt(GetMousePosition());
+            }
+        }
+
         private void HandleMovement()
         {
-            _player.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+            if (_movementInputEnabled)
+            {
+                _player.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+            }
         }
     }
 }

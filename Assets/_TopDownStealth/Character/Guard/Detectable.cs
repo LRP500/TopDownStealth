@@ -6,12 +6,13 @@ namespace TopDownStealth
     public class Detectable : MonoBehaviour
     {
         [SerializeField]
-        private MeshRenderer _renderer = null;
+        private Material _material = null;
 
         [SerializeField]
         private float _detectionDuration = 2f;
 
-        public bool Detected { get; private set; } = false;
+        public bool IsDetected { get; private set; } = false;
+        public bool IsDetectable { get; private set; } = true;
 
         private void Awake()
         {
@@ -24,15 +25,20 @@ namespace TopDownStealth
             StartCoroutine(UpdateDetectionState());
         }
 
+        public void SetDetectable(bool detectable)
+        {
+            IsDetectable = detectable;
+        }
+
         private void SetDetected(bool detected)
         {
-            Detected = detected;
+            IsDetected = detected;
 
             /// Outline shader property
-            _renderer.material.SetFloat("_EnableOutline", Detected ? 1 : 0);
+            _material.SetFloat("_EnableOutline", IsDetected ? 1 : 0);
 
             /// Minimap shader keyword
-            if (Detected)
+            if (IsDetected)
             {
                 Shader.EnableKeyword("MINIMAP_ENABLED");
             }

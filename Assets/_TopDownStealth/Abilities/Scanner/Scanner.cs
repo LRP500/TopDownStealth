@@ -4,16 +4,13 @@ using UnityEngine;
 
 namespace TopDownStealth
 {
-    public class Scanner : MonoBehaviour
+    public class Scanner : CooldownAbility
     {
         [SerializeField]
         private float _waveSpeed = 1f;
 
         [SerializeField]
-        private float _waveMaxDistance = 10f; 
-
-        [SerializeField]
-        private float _cooldownTime = 1f;
+        private float _waveMaxDistance = 10f;
 
         [SerializeField]
         private SpriteRenderer _renderer = null;
@@ -25,26 +22,18 @@ namespace TopDownStealth
 
         public float WaveDistance { get; private set; } = 0f;
 
-        private float _lastWaveTime = 0;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             _renderer.gameObject.SetActive(false);
         }
 
-        public void Activate()
-        {
-            if (CanActivate())
-            {
-                StartCoroutine(UpdateWave());
-            }
-        }
-
-        private IEnumerator UpdateWave()
+        protected override IEnumerator Refresh()
         {
             WaveDistance = 0;
             _waveActive = true;
-            _lastWaveTime = Time.time;
 
             _renderer.gameObject.SetActive(true);
 
@@ -67,14 +56,9 @@ namespace TopDownStealth
             _waveActive = false;
         }
 
-        private bool CanActivate()
+        protected override bool CanActivate()
         {
-            if (_waveActive)
-            {
-                return false;
-            }
-
-            return Time.time < _cooldownTime || Time.time - _lastWaveTime > _cooldownTime;
+            return base.CanActivate() && !_waveActive;
         }
 
         private void Detect()
@@ -83,7 +67,7 @@ namespace TopDownStealth
             {
                 if (Vector3.Distance(transform.position, character.transform.position) <= WaveDistance)
                 {
-                    character.GetComponent<Detectable>().Detect();
+                    character.Detectable.Detect();
                 }
             }
         }

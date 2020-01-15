@@ -16,6 +16,10 @@ namespace TopDownStealth.Characters
         private CharacterBehaviour _behaviour = null;
 
         [SerializeField]
+        private Detectable _detectable = null;
+        public Detectable Detectable => _detectable;
+
+        [SerializeField]
         private FieldOfView _fieldOfView = null;
         public FieldOfView FieldOfView => _fieldOfView;
 
@@ -63,6 +67,11 @@ namespace TopDownStealth.Characters
         {
             Brain = new CharacterBrain();
             _behaviour?.Initialize(this);
+        }
+
+        private void OnDestroy()
+        {
+            _behaviour?.Reset(this);
         }
 
         #region Movement

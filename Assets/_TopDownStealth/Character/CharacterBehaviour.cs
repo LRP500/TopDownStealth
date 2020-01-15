@@ -7,5 +7,7 @@ namespace TopDownStealth.Characters
     {
         public abstract void Initialize(Character character);
         public abstract IEnumerator Run(Character character);
+
+        public virtual void Reset(Character character) { }
     }
 }

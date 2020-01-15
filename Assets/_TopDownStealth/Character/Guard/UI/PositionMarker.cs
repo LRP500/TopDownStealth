@@ -18,19 +18,19 @@ namespace TopDownStealth
 
         private Transform _origin = null;
 
-        private Detectable _target = null;
+        private Guard _target = null;
 
         public void Initialize(Transform origin, Guard target)
         {
             _origin = origin;
-            _target = target.GetComponent<Detectable>();
+            _target = target;
         }
 
         private void Update()
         {
-            _rect.gameObject.SetActive(_target.Detected);
+            _rect.gameObject.SetActive(_target.Detectable.IsDetected);
 
-            if (_target.Detected)
+            if (_target.Detectable.IsDetected)
             {
                 Rotate();
                 Position();

@@ -24,19 +24,19 @@ namespace TopDownStealth.Characters
             _controller = GetComponent<CharacterController>();
         }
 
+        private void Update()
+        {
+            Move();
+
+            _direction = Vector3.zero;
+        }
+
         public void SetDirection(Vector3 direction)
         {
             if (_controller.isGrounded)
             {
                 _direction = direction;
             }
-        }
-
-        private void Update()
-        {
-            Move();
-
-            _direction = Vector3.zero;
         }
 
         private void Move()

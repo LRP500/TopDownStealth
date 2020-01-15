@@ -59,7 +59,13 @@ namespace TopDownStealth.Characters
 
         private void DetectPlayer()
         {
-            if (FieldOfView.VisibleTargets.Count > 0)
+            if (FieldOfView.VisibleTargets.Count == 0 ||
+                FieldOfView.VisibleTargets[0].GetComponent<Detectable>().IsDetectable == false)
+            {
+                DetectionLevel -= _dampeningSpeed * Time.deltaTime;
+                DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionSpeed);
+            }
+            else
             {
                 DetectionLevel += GetDetectionIncrement() * Time.deltaTime;
 
@@ -72,11 +78,6 @@ namespace TopDownStealth.Characters
                     /// Disable script to avoid triggering event multiple times.
                     enabled = false;
                 }
-            }
-            else
-            {
-                DetectionLevel -= _dampeningSpeed * Time.deltaTime;
-                DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionSpeed);
             }
 
             DetectionLevel = Mathf.Clamp(DetectionLevel, 0, _detectionSpeed);
