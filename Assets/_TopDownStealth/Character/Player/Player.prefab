@@ -113,15 +113,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5e22d96ac0872614fb22f408e6f968a0, type: 2}
+    - target: {fileID: 4305318047321506000, guid: e03f0ee9947473e44a8874bd8aefffdc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5153047130631428883, guid: e03f0ee9947473e44a8874bd8aefffdc,
         type: 3}
       propertyPath: m_Name
       value: FovMesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 5261784514226440938, guid: e03f0ee9947473e44a8874bd8aefffdc,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6153374403942842658, guid: e03f0ee9947473e44a8874bd8aefffdc,
         type: 3}
@@ -242,7 +242,7 @@ PrefabInstance:
     - target: {fileID: 5904521478496933969, guid: 1300c595921f6944592a9d55eb778b0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5904521478496933969, guid: 1300c595921f6944592a9d55eb778b0c,
         type: 3}
@@ -350,7 +350,7 @@ PrefabInstance:
     - target: {fileID: 3153832495412031425, guid: 8196c215adde1a844ab21e06345fb247,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3153832495412031425, guid: 8196c215adde1a844ab21e06345fb247,
         type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerControlled
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 11400000, guid: acfd31cb33271ad4383b7367647bce7f, type: 2}
-  _rotateTowardsMouse: 0
+  _rotateTowardsMouse: 1
