@@ -55,12 +55,15 @@ namespace TopDownStealth.Characters
         protected virtual void Awake()
         {
             _mover = GetComponent<CharacterMovement>();
+            Initialize();
         }
 
         private void Start()
         {
-            Initialize();
+        }
 
+        private void OnEnable()
+        {
             StartCoroutine(_behaviour.Run(this));
         }
 
