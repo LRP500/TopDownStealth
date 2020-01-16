@@ -58,6 +58,16 @@ namespace TopDownStealth.Characters.Behaviours
             {
                 _player.Camouflage.Deactivate();
             }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                _player.HackingDevice.Activate();
+            }
+
+            if (Input.GetKeyUp(KeyCode.F))
+            {
+                _player.HackingDevice.Deactivate();
+            }
         }
 
         private void OnDisablePlayerInput(object arg = null)

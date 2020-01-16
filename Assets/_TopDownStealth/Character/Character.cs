@@ -13,13 +13,16 @@ namespace TopDownStealth.Characters
     public abstract class Character : MonoBehaviour
     {
         [SerializeField]
+        [BoxGroup("Character")]
         private CharacterBehaviour _behaviour = null;
 
         [SerializeField]
+        [BoxGroup("Character")]
         private Detectable _detectable = null;
         public Detectable Detectable => _detectable;
 
         [SerializeField]
+        [BoxGroup("Character")]
         private FieldOfView _fieldOfView = null;
         public FieldOfView FieldOfView => _fieldOfView;
 

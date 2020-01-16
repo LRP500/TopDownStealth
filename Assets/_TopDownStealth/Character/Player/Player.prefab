@@ -20,6 +20,7 @@ MonoBehaviour:
   _initialPathPosition: 0
   _scanner: {fileID: 9166421464402041314}
   _camouflage: {fileID: 7449846145088204030}
+  _hackingDevice: {fileID: 5301625778667266986}
   _runtimeReference: {fileID: 11400000, guid: 4fffd20963f498147ae3f755585680ed, type: 2}
 --- !u!1001 &2075665288171110585
 PrefabInstance:
@@ -287,6 +288,87 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e14ca02a2e14c4248b7d3cdf0245be3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &5921847671938850729
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 293880528255874706}
+    m_Modifications:
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16684073
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7948293
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2026488
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364876453174881402, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_Name
+      value: HackingDevice
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4140fe97ef935524e9768ff2687b65a0, type: 3}
+--- !u!114 &5301625778667266986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1998905110153378819, guid: 4140fe97ef935524e9768ff2687b65a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5921847671938850729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b99f15c7e28be146a631623cb5a4d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6120675775586580002

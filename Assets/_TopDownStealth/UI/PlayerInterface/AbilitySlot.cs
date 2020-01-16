@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TopDownStealth
 {
-    public class PowerUpSlot : MonoBehaviour
+    public class AbilitySlot : MonoBehaviour
     {
         [SerializeField]
         private KeyCode _displayedkey = default;
