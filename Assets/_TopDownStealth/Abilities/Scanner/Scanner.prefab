@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba5971c93833a148a979f1595d76dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldownTime: 2
   _cooldownRatio: {fileID: 11400000, guid: 85de4a1727ac79f48875ecdac18f0575, type: 2}
+  _cooldownTime: 15
   _waveSpeed: 35
   _waveMaxDistance: 25
   _renderer: {fileID: 3153832493807343241}
