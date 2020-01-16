@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldownRatio: {fileID: 11400000, guid: 4663966d9c0ad5044be813423495f637, type: 2}
+  _hackableLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  _target: {fileID: 11400000, guid: 55fce6bcd1ca58d4bb9ad17f9aaa4b03, type: 2}
+  _progress: {fileID: 11400000, guid: 9f8aa17b05ce4974b8b12ba2f944f981, type: 2}

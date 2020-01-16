@@ -1,4 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using System.Collections;
+using Sirenix.OdinInspector;
 using Tools;
 using Tools.Extensions;
 using UnityEngine;
@@ -25,9 +27,13 @@ namespace TopDownStealth.Characters
         [BoxGroup("Detection")]
         private float _distanceExponent = 2;
 
-        [BoxGroup("Misc")]
+        [BoxGroup("Utilities")]
         [SerializeField, Required]
         private CharacterListVariable _runtimeGuards = null;
+
+        [SerializeField]
+        [BoxGroup("Character")]
+        private Hackable _hackable = null;
 
         public float DetectionLevel { get; private set; } = 0;
 
@@ -35,9 +41,15 @@ namespace TopDownStealth.Characters
         {
             base.Awake();
 
-            _runtimeGuards.Add(this);
+            Initialize();
+        }
 
+        private void Initialize()
+        {
+            _runtimeGuards.Add(this);
             Side = CharacterSide.Enemy;
+            _hackable.SubscribeOnHackSuccessful(Disable);
+            _hackable.SubscribeOnHackTimedOut(Enable);
         }
 
         protected override void Update()
@@ -49,6 +61,8 @@ namespace TopDownStealth.Characters
 
         private void OnDestroy()
         {
+            _hackable.UnsubscribeOnHackSuccessful(Disable);
+            _hackable.UnsubscribeOnHackTimedOut(Enable);
             _runtimeGuards.Remove(this);
         }
 
@@ -110,6 +124,16 @@ namespace TopDownStealth.Characters
             distIncrement = distIncrement * _detectionSpeed;
 
             return angleIncrement + distIncrement;
+        }
+
+        private void Disable()
+        {
+            enabled = false;
+        }
+
+        private void Enable()
+        {
+            enabled = true;
         }
     }
 }
