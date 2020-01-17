@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46a6806e8d2b024d81cf9e562ae9f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hackingTime: 2
-  _effectDuration: 5
+  _hackingTime: 5
+  _effectDuration: 10
 --- !u!1 &6451206313311266841
 GameObject:
   m_ObjectHideFlags: 0

@@ -187,7 +187,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &136112734
 MonoBehaviour:
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -620,7 +620,8 @@ MonoBehaviour:
   _gauge: {fileID: 136112734}
   _progress: {fileID: 11400000, guid: 9f8aa17b05ce4974b8b12ba2f944f981, type: 2}
   _target: {fileID: 11400000, guid: 55fce6bcd1ca58d4bb9ad17f9aaa4b03, type: 2}
-  _positionOffset: {x: 80, y: -50}
+  _player: {fileID: 11400000, guid: 4fffd20963f498147ae3f755585680ed, type: 2}
+  _positionOffset: {x: 1, y: 1}
 --- !u!114 &522328050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,10 +1857,10 @@ RectTransform:
   m_Father: {fileID: 136112733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1345901546
 MonoBehaviour:
@@ -1874,7 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.011764706}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.03137255}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -126,6 +126,7 @@ namespace TopDownStealth.Characters
 
         private void Disable()
         {
+            DetectionLevel = 0;
             enabled = false;
         }
 

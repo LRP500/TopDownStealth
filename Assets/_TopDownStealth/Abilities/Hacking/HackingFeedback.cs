@@ -1,4 +1,5 @@
-﻿using Tools.Variables;
+﻿using Extensions;
+using Tools.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,9 @@ namespace TopDownStealth
 
         [SerializeField]
         private TransformVariable _target = null;
+
+        [SerializeField]
+        private CharacterVariable _player = null;
 
         [SerializeField]
         private Vector2 _positionOffset = Vector2.zero;
@@ -38,9 +42,12 @@ namespace TopDownStealth
 
             if (_target.Value)
             {
-                Vector3 targetPosition = _camera.Value.WorldToScreenPoint(_target.Value.position);
-                Vector3 offset = new Vector3(_positionOffset.x, _positionOffset.y, 0);
-                _gauge.transform.position =  targetPosition + offset;
+                Vector3 dir = (_player.Value.transform.position - _target.Value.position).normalized;
+                Vector3 cross = Vector3.Cross(dir, Vector3.up).normalized;
+                Vector3 offset = dir + (cross / 1.25f);
+                Vector3 targetPos = _camera.Value.WorldToScreenPoint(_target.Value.position + offset);
+
+                _gauge.transform.position = targetPos;
                 _gauge.fillAmount = _progress.Value;
             }
         }
