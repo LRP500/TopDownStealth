@@ -6,6 +6,9 @@ namespace TopDownStealth
     public class Hackable : MonoBehaviour
     {
         [SerializeField]
+        private MeshRenderer _renderer = null;
+
+        [SerializeField]
         private float _hackingTime = 1f;
         public float HackingTime => _hackingTime;
 
@@ -18,6 +21,22 @@ namespace TopDownStealth
 
         public bool IsHacked { get; private set; } = false;
 
+        private MaterialPropertyBlock _mainRendererPropertyBlock = null;
+
+        private void Awake()
+        {
+            _mainRendererPropertyBlock = new MaterialPropertyBlock();
+            _renderer.GetPropertyBlock(_mainRendererPropertyBlock);
+
+            SetMaterialProperties();
+        }
+
+        private void SetMaterialProperties()
+        {
+            _mainRendererPropertyBlock.SetFloat("_Disabled", IsHacked ? 1 : 0);
+            _renderer.SetPropertyBlock(_mainRendererPropertyBlock);
+        }
+
         public virtual void Hack()
         {
             StartCoroutine(RefreshState());
@@ -26,12 +45,14 @@ namespace TopDownStealth
         private IEnumerator RefreshState()
         {
             IsHacked = true;
+            SetMaterialProperties();
             OnHackSuccessful?.Invoke();
 
             yield return new WaitForSeconds(_effectDuration);
 
-            OnHackTimedOut?.Invoke();
             IsHacked = false;
+            SetMaterialProperties();
+            OnHackTimedOut?.Invoke();
         }
 
         public void SubscribeOnHackSuccessful(System.Action callback)

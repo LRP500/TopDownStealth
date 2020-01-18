@@ -226,6 +226,7 @@
             };
 
             fixed4 _FieldOfViewColor;
+            float _Disabled;
 
             v2f vert(appdata v)
             {
@@ -236,12 +237,12 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-            #if MINIMAP_ENABLED
+            #if MINIMAP_ENABLED && !_Disabled
                 fixed4 col = _FieldOfViewColor;
             #endif
 
-            #if !MINIMAP_ENABLED
-                fixed4 col = fixed4(0, 0, 0 , 0);
+            #if !MINIMAP_ENABLED || _Disabled
+                fixed4 col = fixed4(0, 0, 0, 0);
             #endif
 
                 return col;

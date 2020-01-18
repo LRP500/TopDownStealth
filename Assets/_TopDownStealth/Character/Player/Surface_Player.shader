@@ -21,7 +21,7 @@
         
         CGPROGRAM
 
-        #pragma shader_feature _ENABLE_CAMOUFLAGE
+        #pragma shader_feature_local ENABLE_CAMOUFLAGE
 
         #pragma surface surf Standard fullforwardshadows alpha:fade
         #pragma target 3.0
@@ -40,7 +40,7 @@
         {
             fixed4 col = tex2D (_MainTex, IN.uv_MainTex);
 
-        #if defined(_ENABLE_CAMOUFLAGE)
+        #if defined(ENABLE_CAMOUFLAGE)
             col = col * _CamouflageColor;
         #else
             col = col * _MainColor;

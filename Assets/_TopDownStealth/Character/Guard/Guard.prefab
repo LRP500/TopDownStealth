@@ -109,8 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46a6806e8d2b024d81cf9e562ae9f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hackingTime: 5
-  _effectDuration: 10
+  _renderer: {fileID: 5386786977910939218}
+  _hackingTime: 2
+  _effectDuration: 5
 --- !u!1 &6451206313311266841
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +625,12 @@ MonoBehaviour:
 --- !u!1 &6166846909351792499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 488572831933396051, guid: e03f0ee9947473e44a8874bd8aefffdc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6004082194248301344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5386786977910939218 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1842956064035579250, guid: e03f0ee9947473e44a8874bd8aefffdc,
     type: 3}
   m_PrefabInstance: {fileID: 6004082194248301344}
   m_PrefabAsset: {fileID: 0}

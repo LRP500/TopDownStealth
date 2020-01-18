@@ -1,4 +1,4 @@
-﻿Shader "Custom/StencilMask"
+﻿Shader "Custom/StencilMask/PlayerFOV"
 {
     Properties
     {

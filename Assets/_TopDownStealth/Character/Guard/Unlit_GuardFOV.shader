@@ -1,9 +1,10 @@
-﻿Shader "Custom/Unlit/FieldOfView"
+﻿Shader "Custom/Unlit/GuardFOV"
 {
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
         _Color("Color", Color) = (1, 1, 1, 1)
+        [IntRange] _StencilRef("Stencil Reference", Range(0, 255)) = 0
     }
 
     SubShader
@@ -15,13 +16,14 @@
             "Minimap" = "FieldOfView"
         }
 
-        Stencil
-        {
-            Ref 2
-            ReadMask 2
-            Comp NotEqual
-            Pass Replace
-        }
+        // Non-additive transparency
+        // Stencil
+        // {
+        //     Ref [_StencilRef]
+        //     ReadMask [_StencilRef]
+        //     Comp NotEqual
+        //     Pass Replace
+        // }
 
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha

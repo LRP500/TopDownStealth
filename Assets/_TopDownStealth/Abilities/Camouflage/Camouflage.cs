@@ -19,7 +19,7 @@ namespace TopDownStealth
             if (Active)
             {
                 _player.Detectable.SetDetectable(false);
-                _playerMaterial.EnableKeyword("_ENABLE_CAMOUFLAGE");
+                _playerMaterial.EnableKeyword("ENABLE_CAMOUFLAGE");
                 EventManager.Instance.Trigger(GameplayEvent.DisablePlayerMovementInput);
             }
         }
@@ -31,7 +31,7 @@ namespace TopDownStealth
             if (!Active)
             {
                 _player.Detectable.SetDetectable(true);
-                _playerMaterial.DisableKeyword("_ENABLE_CAMOUFLAGE");
+                _playerMaterial.DisableKeyword("ENABLE_CAMOUFLAGE");
                 EventManager.Instance.Trigger(GameplayEvent.EnablePlayerMovementInput);
             }
         }

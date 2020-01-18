@@ -1,11 +1,12 @@
-﻿Shader "Custom/StencilObject/Surface"
+﻿Shader "Custom/StencilObject/Surface/Guard"
 {
     Properties
     {
         
         [Header(Visible)]
         _MainTex("Albedo (RGB)", 2D) = "white" {}
-        _Color("Color", Color) = (1, 1, 1, 1)
+        _MainColor("Main Color", Color) = (1, 1, 1, 1)
+        _DisabledColor("Disabled Color", Color) = (1, 1, 1, 1)
         _Glossiness("Smoothness", Range(0, 1)) = 0.5
         _Metallic("Metallic", Range(0, 1)) = 0.0
         _Emission("Emission", Color) = (0, 0, 0)
@@ -22,9 +23,12 @@
         Tags
         {
             "RenderType" = "Transparent"
-            "Queue" = "Geometry"
+            "Queue" = "Transparent"
             "Minimap" = "Detectable"
         }
+
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
 		Stencil
 		{
@@ -35,7 +39,7 @@
 
         CGPROGRAM
 
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard fullforwardshadows alpha:fade
         #pragma target 3.0
 
         sampler2D _MainTex;
@@ -47,12 +51,16 @@
 
         half _Glossiness;
         half _Metallic;
-        fixed4 _Color;
+        fixed4 _MainColor;
+        fixed4 _DisabledColor;
         float _Emission;
+        float _Disabled;
 
         void surf(Input i, inout SurfaceOutputStandard o)
         {
-            fixed4 col = tex2D (_MainTex, i.uv_MainTex) * _Color;
+            fixed4 col = tex2D (_MainTex, i.uv_MainTex);
+            col = col * lerp(_MainColor, _DisabledColor, _Disabled);
+            
             o.Alpha = col.a;
             o.Albedo = col.rgb;
             o.Metallic = _Metallic;
