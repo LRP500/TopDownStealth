@@ -18,10 +18,25 @@ MonoBehaviour:
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
+  _power: {fileID: 5332883305953762686}
   _scanner: {fileID: 9166421464402041314}
   _camouflage: {fileID: 7449846145088204030}
   _hackingDevice: {fileID: 5301625778667266986}
   _runtimeReference: {fileID: 11400000, guid: 4fffd20963f498147ae3f755585680ed, type: 2}
+--- !u!114 &5332883305953762686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293880528255874705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecb75d155f612d42b6f245d9e486bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maximumValue: {fileID: 11400000, guid: 0469b05268126074eb92807008d255d2, type: 2}
+  _currentValue: {fileID: 11400000, guid: 1fb59cd6f32505d48a291201e24e4975, type: 2}
 --- !u!1001 &2075665288171110585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,6 +371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HackingDevice
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576897643644062555, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4140fe97ef935524e9768ff2687b65a0, type: 3}

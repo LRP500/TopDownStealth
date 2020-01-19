@@ -22,6 +22,11 @@ namespace TopDownStealth
 
         private bool _hacking = false;
 
+        private void Awake()
+        {
+            Initialize();
+        }
+
         public override void Activate()
         {
             base.Activate();
@@ -67,7 +72,7 @@ namespace TopDownStealth
             }
 
             _hackable.Hack();
-            Reset();
+            Initialize();
 
             Debug.Log("<color=green>[Player] Hack successful</color>");
         }
@@ -80,7 +85,7 @@ namespace TopDownStealth
             _lineRenderer.SetPosition(1, _target.Value.position - (dir / 2));
         }
 
-        private void Reset()
+        private void Initialize()
         {
             _hacking = false;
             _target.Clear();
@@ -94,7 +99,7 @@ namespace TopDownStealth
             {
                 StopAllCoroutines();
 
-                Reset();
+                Initialize();
 
                 Debug.Log("<color=red>[Player] Hacking procedure cancelled</color>");
             }

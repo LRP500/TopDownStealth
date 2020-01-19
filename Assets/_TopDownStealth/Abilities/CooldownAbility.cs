@@ -10,6 +10,9 @@ namespace TopDownStealth
         private float _cooldownTime = 1f;
         public float CooldownTime => _cooldownTime;
 
+        [SerializeField]
+        private float _powerConsumption = 10f;
+
         protected virtual void Awake()
         {
             LastUseTime = float.NegativeInfinity;

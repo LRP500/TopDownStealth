@@ -6,6 +6,11 @@ namespace TopDownStealth.Characters
     public class Player : Character
     {
         [SerializeField]
+        [BoxGroup("Resources")]
+        private PowerManager _power = null;
+        public PowerManager Power => _power;
+
+        [SerializeField]
         [BoxGroup("Abilities")]
         private Scanner _scanner = null;
         public Scanner Scanner => _scanner;
