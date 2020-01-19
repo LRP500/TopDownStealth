@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b8bc3215cadf743b124f412923e98e, type: 3}
   m_Name: CurrentPower
   m_EditorClassIdentifier: 
-  _value: 22
+  _value: 100

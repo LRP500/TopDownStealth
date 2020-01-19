@@ -6,6 +6,10 @@ namespace TopDownStealth
     public abstract class Ability : MonoBehaviour
     {
         [SerializeField]
+        private CharacterVariable _holder = null;
+        public CharacterVariable Holder => _holder;
+
+        [SerializeField]
         private FloatVariable _cooldownRatio = null;
         public FloatVariable CooldownRatio => _cooldownRatio;
 

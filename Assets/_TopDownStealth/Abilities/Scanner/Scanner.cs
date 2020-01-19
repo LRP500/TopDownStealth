@@ -25,7 +25,6 @@ namespace TopDownStealth
 
         public float WaveDistance { get; private set; } = 0f;
 
-
         protected override void Awake()
         {
             base.Awake();
@@ -37,7 +36,6 @@ namespace TopDownStealth
         {
             WaveDistance = 0;
             _waveActive = true;
-
             _renderer.gameObject.SetActive(true);
 
             while (WaveDistance < _waveMaxDistance)
