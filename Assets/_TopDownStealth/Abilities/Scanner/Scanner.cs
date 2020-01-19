@@ -13,6 +13,9 @@ namespace TopDownStealth
         private float _waveMaxDistance = 10f;
 
         [SerializeField]
+        private float _detectionDuration = 2f;
+
+        [SerializeField]
         private SpriteRenderer _renderer = null;
 
         [SerializeField]
@@ -67,7 +70,7 @@ namespace TopDownStealth
             {
                 if (Vector3.Distance(transform.position, character.transform.position) <= WaveDistance)
                 {
-                    character.Detectable.Detect();
+                    character.Detectable.Detect(_detectionDuration);
                 }
             }
         }

@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46a6806e8d2b024d81cf9e562ae9f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 5386786977910939218}
+  _mainRenderer: {fileID: 5386786977910939218}
+  _fovRenderer: {fileID: 7363515732916961286}
   _hackingTime: 2
   _effectDuration: 5
 --- !u!1 &6451206313311266841
@@ -649,6 +650,12 @@ MonoBehaviour:
 --- !u!33 &4177829886385268465 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 7685510224222608849, guid: e03f0ee9947473e44a8874bd8aefffdc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6004082194248301344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7363515732916961286 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3846846464817822502, guid: e03f0ee9947473e44a8874bd8aefffdc,
     type: 3}
   m_PrefabInstance: {fileID: 6004082194248301344}
   m_PrefabAsset: {fileID: 0}

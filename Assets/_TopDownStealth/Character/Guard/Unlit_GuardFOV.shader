@@ -16,15 +16,6 @@
             "Minimap" = "FieldOfView"
         }
 
-        // Non-additive transparency
-        // Stencil
-        // {
-        //     Ref [_StencilRef]
-        //     ReadMask [_StencilRef]
-        //     Comp NotEqual
-        //     Pass Replace
-        // }
-
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
 

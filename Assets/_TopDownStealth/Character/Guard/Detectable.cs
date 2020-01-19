@@ -8,9 +8,6 @@ namespace TopDownStealth
         [SerializeField]
         private Material _material = null;
 
-        [SerializeField]
-        private float _detectionDuration = 2f;
-
         public bool IsDetected { get; private set; } = false;
         public bool IsDetectable { get; private set; } = true;
 
@@ -19,10 +16,10 @@ namespace TopDownStealth
             SetDetected(false);
         }
 
-        public void Detect()
+        public void Detect(float duration)
         {
             StopAllCoroutines();
-            StartCoroutine(UpdateDetectionState());
+            StartCoroutine(UpdateDetectionState(duration));
         }
 
         public void SetDetectable(bool detectable)
@@ -48,11 +45,11 @@ namespace TopDownStealth
             }
         }
 
-        private IEnumerator UpdateDetectionState()
+        private IEnumerator UpdateDetectionState(float duration)
         {
             SetDetected(true);
 
-            yield return new WaitForSeconds(_detectionDuration);
+            yield return new WaitForSeconds(duration);
 
             SetDetected(false);
         }
