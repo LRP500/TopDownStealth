@@ -29,18 +29,17 @@ namespace TopDownStealth
 
         public override void Activate()
         {
-            base.Activate();
-
-            if (Active)
+            if (CanActivate())
             {
                 _hackable = GetHackableTarget();
 
-                if (_hackable != null)
+                if (_hackable != null && !_hackable.IsHacked)
                 {
+                    Active = true;
+                    CooldownRatio.SetValue(0);
                     _target.SetValue(_hackable.transform);
+                    StartCoroutine(RefreshBehaviourOverTime());
                 }
-
-                StartCoroutine(RefreshBehaviourOverTime());
             }
         }
 
