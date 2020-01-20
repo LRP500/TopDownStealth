@@ -15,28 +15,14 @@ MonoBehaviour:
   _behaviour: {fileID: 11400000, guid: 5faca3ea37e9b844ebf42a410e8dec91, type: 2}
   _detectable: {fileID: 7370677937408110370}
   _fieldOfView: {fileID: 8949571104946859002}
+  _power: {fileID: 3122419534307388191}
   _hasPath: 0
   _path: {fileID: 0}
   _initialPathPosition: 0
-  _power: {fileID: 5332883305953762686}
   _scanner: {fileID: 9166421464402041314}
   _camouflage: {fileID: 7449846145088204030}
   _hackingDevice: {fileID: 5301625778667266986}
   _runtimeReference: {fileID: 11400000, guid: 4fffd20963f498147ae3f755585680ed, type: 2}
---- !u!114 &5332883305953762686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293880528255874705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecb75d155f612d42b6f245d9e486bdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maximumValue: {fileID: 11400000, guid: 0469b05268126074eb92807008d255d2, type: 2}
-  _currentValue: {fileID: 11400000, guid: 1fb59cd6f32505d48a291201e24e4975, type: 2}
 --- !u!1001 &2075665288171110585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,6 +176,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c389dca7678164b876a5fb4e35335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3122419534307388191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4006847493247445926, guid: e03f0ee9947473e44a8874bd8aefffdc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2075665288171110585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293880528255874705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecb75d155f612d42b6f245d9e486bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7370677937408110370 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8829261016052838299, guid: e03f0ee9947473e44a8874bd8aefffdc,
@@ -291,6 +289,16 @@ PrefabInstance:
       propertyPath: _playerMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 8edede63bad34ef458bcf6da76190cab, type: 2}
+    - target: {fileID: 6598024934255054212, guid: 1300c595921f6944592a9d55eb778b0c,
+        type: 3}
+      propertyPath: _holder
+      value: 
+      objectReference: {fileID: -6555764719984846557}
+    - target: {fileID: 6598024934255054212, guid: 1300c595921f6944592a9d55eb778b0c,
+        type: 3}
+      propertyPath: _powerConsumption
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1300c595921f6944592a9d55eb778b0c, type: 3}
 --- !u!114 &7449846145088204030 stripped
@@ -312,6 +320,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 293880528255874706}
     m_Modifications:
+    - target: {fileID: 1998905110153378819, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: _holder
+      value: 
+      objectReference: {fileID: -6555764719984846557}
+    - target: {fileID: 1998905110153378819, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: _powerConsumption
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -410,15 +428,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3153832495412031424, guid: 8196c215adde1a844ab21e06345fb247,
         type: 3}
-      propertyPath: _cooldownRatio
+      propertyPath: _holder
       value: 
-      objectReference: {fileID: 11400000, guid: 85de4a1727ac79f48875ecdac18f0575,
-        type: 2}
-    - target: {fileID: 3153832495412031424, guid: 8196c215adde1a844ab21e06345fb247,
-        type: 3}
-      propertyPath: _cooldownTime
-      value: 5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -6555764719984846557}
     - target: {fileID: 3153832495412031425, guid: 8196c215adde1a844ab21e06345fb247,
         type: 3}
       propertyPath: m_LocalPosition.x

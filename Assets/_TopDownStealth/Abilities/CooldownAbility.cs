@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Tools.Extensions;
+﻿using Tools.Extensions;
 using UnityEngine;
 
 namespace TopDownStealth
@@ -9,9 +8,6 @@ namespace TopDownStealth
         [SerializeField]
         private float _cooldownTime = 1f;
         public float CooldownTime => _cooldownTime;
-
-        [SerializeField]
-        private float _powerConsumption = 10f;
 
         protected virtual void Awake()
         {
@@ -31,7 +27,8 @@ namespace TopDownStealth
             if (CanActivate())
             {
                 LastUseTime = Time.time;
-                StartCoroutine(Refresh());
+                Holder.Power.Substract(PowerConsumption);
+                StartCoroutine(RefreshBehaviourOverTime());
             }
 
             return true;
@@ -39,9 +36,7 @@ namespace TopDownStealth
 
         protected override bool CanActivate()
         {
-            return CooldownRatio >= 1;
+            return CooldownRatio >= 1 && Holder.Power.Current >= PowerConsumption;
         }
-
-        protected abstract IEnumerator Refresh();
     }
 }

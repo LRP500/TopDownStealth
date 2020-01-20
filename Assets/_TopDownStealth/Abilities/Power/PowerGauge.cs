@@ -24,6 +24,11 @@ namespace TopDownStealth
             _currentPower.Subscribe(RefreshGauge);
         }
 
+        protected override void Initialize()
+        {
+            RefreshGauge();
+        }
+
         private void OnDestroy()
         {
             _maximumPower.Unsubscribe(RefreshGauge);

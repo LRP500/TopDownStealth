@@ -12,7 +12,7 @@ namespace TopDownStealth.Characters
     [RequireComponent(typeof(CharacterMovement))]
     public abstract class Character : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField] 
         [PropertyOrder(-2)]
         [BoxGroup("Character")]
         private CharacterBehaviour _behaviour = null;
@@ -27,6 +27,11 @@ namespace TopDownStealth.Characters
         [BoxGroup("Character")]
         private FieldOfView _fieldOfView = null;
         public FieldOfView FieldOfView => _fieldOfView;
+
+        [SerializeField]
+        [BoxGroup("Resources")]
+        private PowerManager _power = null;
+        public PowerManager Power => _power;
 
         [SerializeField]
         [BoxGroup("Navigation")]

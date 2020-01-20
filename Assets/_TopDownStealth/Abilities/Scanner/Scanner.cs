@@ -32,7 +32,7 @@ namespace TopDownStealth
             _renderer.gameObject.SetActive(false);
         }
 
-        protected override IEnumerator Refresh()
+        protected override IEnumerator RefreshBehaviourOverTime()
         {
             WaveDistance = 0;
             _waveActive = true;
@@ -55,11 +55,6 @@ namespace TopDownStealth
             _renderer.gameObject.SetActive(false);
 
             _waveActive = false;
-        }
-
-        protected override bool CanActivate()
-        {
-            return base.CanActivate() && !_waveActive;
         }
 
         private void Detect()

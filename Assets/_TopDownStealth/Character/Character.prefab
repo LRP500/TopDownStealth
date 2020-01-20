@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _material: {fileID: 0}
-  _detectionDuration: 5
 --- !u!1 &978690767645789828
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +201,7 @@ GameObject:
   - component: {fileID: 1790792581975914026}
   - component: {fileID: 1790792581975914025}
   - component: {fileID: 6988879729192954691}
+  - component: {fileID: 4006847493247445926}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -286,6 +286,20 @@ MonoBehaviour:
   _edgeResolveIterations: 10
   _edgeDistThreshold: 0.1
   _maskCutawayDistance: 0
+--- !u!114 &4006847493247445926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790792581975914024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecb75d155f612d42b6f245d9e486bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maximumValue: {fileID: 11400000, guid: 0469b05268126074eb92807008d255d2, type: 2}
+  _currentValue: {fileID: 11400000, guid: 1fb59cd6f32505d48a291201e24e4975, type: 2}
 --- !u!1 &5153047130631428883
 GameObject:
   m_ObjectHideFlags: 0

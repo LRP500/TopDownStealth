@@ -38,8 +38,9 @@ namespace TopDownStealth
                 if (_hackable != null)
                 {
                     _target.SetValue(_hackable.transform);
-                    StartCoroutine(StartHacking());
                 }
+
+                StartCoroutine(RefreshBehaviourOverTime());
             }
         }
 
@@ -50,12 +51,7 @@ namespace TopDownStealth
             CancelHack();
         }
 
-        protected override bool CanActivate()
-        {
-            return true;
-        }
-
-        private IEnumerator StartHacking()
+        protected override IEnumerator RefreshBehaviourOverTime()
         {
             Debug.Log($"[Player] Initiating hacking procedure on {transform.parent.name}...");
 
@@ -72,6 +68,7 @@ namespace TopDownStealth
             }
 
             _hackable.Hack();
+            Holder.Power.Substract(PowerConsumption);
             Initialize();
 
             Debug.Log("<color=green>[Player] Hack successful</color>");

@@ -10,6 +10,7 @@ namespace TopDownStealth
 
         [SerializeField]
         private FloatVariable _currentValue = null;
+        public float Current => _currentValue;
 
         private void Start()
         {
@@ -23,12 +24,14 @@ namespace TopDownStealth
 
         public void Substract(float amount)
         {
-            float newValue = Mathf.Clamp(_currentValue + amount, 0, _maximumValue);
+            float newValue = Mathf.Clamp(_currentValue - amount, 0, _maximumValue);
+            _currentValue.SetValue(newValue);
         }
 
         public void Add(float amount)
         {
-            float newValue = Mathf.Clamp(_currentValue - amount, 0, _maximumValue);
+            float newValue = Mathf.Clamp(_currentValue + amount, 0, _maximumValue);
+            _currentValue.SetValue(newValue);
         }
     }
 }

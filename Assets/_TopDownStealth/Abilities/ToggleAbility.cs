@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace TopDownStealth
+﻿namespace TopDownStealth
 {
-    public class ToggleAbility : Ability
+    public abstract class ToggleAbility : Ability
     {
         private void Awake()
         {
@@ -20,13 +18,16 @@ namespace TopDownStealth
 
         public virtual void Deactivate()
         {
-            Active = false;
-            CooldownRatio.SetValue(1);
+            if (Active)
+            {
+                Active = false;
+                CooldownRatio.SetValue(1);
+            }
         }
 
         protected override bool CanActivate()
         {
-            return !Active;
+            return !Active && Holder.Power.Current >= PowerConsumption;
         }
     }
 }
