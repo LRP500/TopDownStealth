@@ -23,6 +23,7 @@ namespace TopDownStealth
         private System.Action OnHackTimedOut = null;
 
         public bool IsHacked { get; private set; } = false;
+        public float Cooldown { get; private set; } = 0;
 
         private MaterialPropertyBlock _mainRendererPropertyBlock = null;
 
@@ -52,7 +53,15 @@ namespace TopDownStealth
             _fovRenderer.enabled = false;
             OnHackSuccessful?.Invoke();
 
-            yield return new WaitForSeconds(_effectDuration);
+            Cooldown = _effectDuration;
+
+            while (Cooldown > 0)
+            {
+                Cooldown -= Time.deltaTime;
+                yield return null;
+            }
+
+            Cooldown = 0;
 
             IsHacked = false;
             SetMaterialProperties();

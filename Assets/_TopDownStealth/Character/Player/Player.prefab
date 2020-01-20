@@ -330,6 +330,12 @@ PrefabInstance:
       propertyPath: _powerConsumption
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1998905110153378819, guid: 4140fe97ef935524e9768ff2687b65a0,
+        type: 3}
+      propertyPath: _mainCamera
+      value: 
+      objectReference: {fileID: 11400000, guid: acfd31cb33271ad4383b7367647bce7f,
+        type: 2}
     - target: {fileID: 3095761279427165703, guid: 4140fe97ef935524e9768ff2687b65a0,
         type: 3}
       propertyPath: m_LocalPosition.x

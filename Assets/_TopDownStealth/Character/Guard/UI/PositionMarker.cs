@@ -1,4 +1,5 @@
-﻿using Tools.Extensions;
+﻿using Extensions;
+using Tools.Extensions;
 using Tools.Variables;
 using TopDownStealth.Characters;
 using UnityEngine;
@@ -66,11 +67,14 @@ namespace TopDownStealth
         private void Position()
         {
             Vector3 screenPos = _camera.Value.WorldToScreenPoint(_target.transform.position);
-            bool visible = !(screenPos.x.InRange(0, Screen.width) && screenPos.y.InRange(0, Screen.height));
-            _rect.gameObject.SetActive(visible);
 
-            if (visible)
+            if (screenPos.IsScreenPointVisible())
             {
+                _rect.gameObject.SetActive(false);
+            }
+            else
+            {
+                _rect.gameObject.SetActive(true);
                 screenPos.x = Mathf.Clamp(screenPos.x, _borderSize.x, Screen.width - _borderSize.x);
                 screenPos.y = Mathf.Clamp(screenPos.y, _borderSize.y, Screen.height - _borderSize.y);
                 _rect.position = screenPos;

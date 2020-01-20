@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Extensions;
+using System.Collections;
 using Tools.Variables;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace TopDownStealth
 {
     public class HackingDevice : ToggleAbility
     {
+        [SerializeField]
+        private CameraVariable _mainCamera = null;
+
         [SerializeField]
         private LayerMask _hackableLayers = default;
 
@@ -60,6 +64,12 @@ namespace TopDownStealth
             float elapsed = 0;
             while (elapsed < _hackable.HackingTime)
             {
+                if (IsTargetValid(_target) == false)
+                {
+                    CancelHack();
+                    yield break;
+                }
+
                 elapsed += Time.deltaTime;
                 _progress.SetValue(elapsed / _hackable.HackingTime);
                 RefreshLine();
@@ -70,7 +80,14 @@ namespace TopDownStealth
             Holder.Power.Substract(PowerConsumption);
             Initialize();
 
-            Debug.Log("<color=green>[Player] Hack successful</color>");
+            Debug.Log("<color=green>[Player] Hack procedure successful</color>");
+        }
+
+        private bool IsTargetValid(Transform target)
+        {
+            bool isDetected = Holder.FieldOfView.VisibleTargets.Contains(target);
+            bool isVisible = target.position.IsWorldPointVisible(_mainCamera);
+            return isDetected && isVisible;
         }
 
         private void RefreshLine()
@@ -93,11 +110,11 @@ namespace TopDownStealth
         {
             if (_hacking)
             {
-                StopAllCoroutines();
-
                 Initialize();
 
-                Debug.Log("<color=red>[Player] Hacking procedure cancelled</color>");
+                StopAllCoroutines();
+
+                Debug.Log("<color=red>[Player] Hacking procedure failed</color>");
             }
         }
 
@@ -105,7 +122,7 @@ namespace TopDownStealth
         {
             Vector3 dir = transform.forward;
 
-            if (Physics.Raycast(transform.position, dir, out RaycastHit hit, _hackableLayers))
+            if (Physics.Raycast(transform.position, dir, out RaycastHit hit, 50, _hackableLayers))
             {
                 return hit.collider.gameObject.GetComponent<Hackable>();
             }

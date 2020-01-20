@@ -1,5 +1,4 @@
-﻿using Extensions;
-using Tools.Variables;
+﻿using Tools.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 
