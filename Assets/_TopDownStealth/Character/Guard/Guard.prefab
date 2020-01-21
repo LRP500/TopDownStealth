@@ -92,8 +92,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.6
-  m_fontSizeBase: 0.6
+  m_fontSize: 0.7
+  m_fontSizeBase: 0.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hackable: {fileID: 5644244195125464717}
   _cooldownText: {fileID: 3304236288020229926}
+  _textColor: {r: 1, g: 1, b: 1, a: 1}
   _criticalTreshold: 25
   _criticalColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3564946877152243851
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainRenderer: {fileID: 5386786977910939218}
   _fovRenderer: {fileID: 7363515732916961286}
-  _hackingTime: 2
+  _hackingTime: 1
   _effectDuration: 5
 --- !u!1 &6451206313311266841
 GameObject:
@@ -407,10 +408,10 @@ RectTransform:
   m_Father: {fileID: 513701719362043358}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3032695748091741644
 MonoBehaviour:
@@ -508,7 +509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6457597472950187690
 RectTransform:
   m_ObjectHideFlags: 0

@@ -54,6 +54,7 @@
         fixed4 _MainColor;
         fixed4 _DisabledColor;
         float _Emission;
+       
         float _Disabled;
 
         void surf(Input i, inout SurfaceOutputStandard o)
@@ -90,7 +91,9 @@
             half _OutlineWidth;
             half4 _OutlineColor;
             float _EnableOutline;
-
+            
+            float _Disabled;
+            
             struct appdata
             {
                 float4 uv : POSITION;
@@ -109,7 +112,8 @@
 
                 // apply outline offset only if outline enabled
                 float3 offset = v.normal * _OutlineWidth;
-                o.position.xyz += lerp(0, offset, _EnableOutline);
+                float enabled = min(_EnableOutline, 1 - _Disabled);
+                o.position.xyz += lerp(0, offset, enabled);
 
                 o.position = UnityObjectToClipPos(o.position);
                 return o;

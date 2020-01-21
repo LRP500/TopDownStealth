@@ -46,7 +46,6 @@ namespace TopDownStealth.Characters.Behaviours
                     destination.SetY(0);
                     Vector3 direction = destination - character.transform.position;
                     character.Move(direction.normalized);
-
                 }
 
                 yield return null;

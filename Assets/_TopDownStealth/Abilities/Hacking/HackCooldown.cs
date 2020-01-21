@@ -13,6 +13,9 @@ namespace TopDownStealth
         private TextMeshProUGUI _cooldownText = null;
 
         [SerializeField]
+        private Color _textColor = Color.white;
+
+        [SerializeField]
         [LabelText("Critical Treshold (%)")]
         private float _criticalTreshold = 0f;
 
@@ -31,13 +34,11 @@ namespace TopDownStealth
                 transform.eulerAngles = new Vector3(90, 0, 0);
 
                 float cooldown = Mathf.Clamp(_hackable.Cooldown, 0, _hackable.EffectDuration);
-                _cooldownText.text = $"<mspace=0.3>{cooldown.ToString("00.00")}</mspace>";
+                _cooldownText.text = $"<mspace=0.35>{cooldown.ToString("00.00")}</mspace>";
                 _cooldownText.enabled = true;
 
                 float ratio = 1 / (_hackable.EffectDuration / cooldown);
-                _cooldownText.color = ratio < (_criticalTreshold / 100) ? _criticalColor : Color.white;
-
-                /// [TODO] make text red when cooldown under critical treshold
+                _cooldownText.color = ratio < (_criticalTreshold / 100) ? _criticalColor : _textColor;
             }
             else
             {
